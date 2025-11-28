@@ -33,13 +33,28 @@ define('MEDIAMANAGER_PLUGIN_DIR', __DIR__ . '/');
 define('MEDIAMANAGER_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-taxonomy.php';
-require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-admin.php';
-require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-rest-api.php';
-require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-suggestions.php';
+if (file_exists(MEDIAMANAGER_PLUGIN_DIR . 'includes/class-admin.php')) {
+    require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-admin.php';
+}
+if (file_exists(MEDIAMANAGER_PLUGIN_DIR . 'includes/class-rest-api.php')) {
+    require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-rest-api.php';
+}
+if (file_exists(MEDIAMANAGER_PLUGIN_DIR . 'includes/class-suggestions.php')) {
+    require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-suggestions.php';
+}
 
 add_action('plugins_loaded', static function () {
     \MediaManager\Taxonomy::init();
-    \MediaManager\Admin::init();
-    \MediaManager\REST_API::init();
-    \MediaManager\Suggestions::init();
+
+    if (class_exists('MediaManager\\Admin')) {
+        \MediaManager\Admin::init();
+    }
+
+    if (class_exists('MediaManager\\REST_API')) {
+        \MediaManager\REST_API::init();
+    }
+
+    if (class_exists('MediaManager\\Suggestions')) {
+        \MediaManager\Suggestions::init();
+    }
 });
