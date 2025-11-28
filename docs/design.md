@@ -16,17 +16,20 @@ This document tracks the evolving design of the Media Manager plugin.
   - URL state management via `?mm_folder=<id>` query param.
   - Vitest tests in `tests/js/FolderTree.test.jsx` with `@vitejs/plugin-react` for JSX transformation.
   - PHPUnit tests in `tests/php/AdminTest.php`.
+- **Drag-and-Drop Organization**:
+  - `DndContext.jsx`: Wraps Media Library with `@dnd-kit/core` context, handles drag start/end events.
+  - `DraggableMedia.jsx`: Makes media grid items draggable with visual feedback.
+  - `DroppableFolder.jsx`: Makes folder tree items valid drop targets.
+  - `MoveToFolderMenu.jsx`: Keyboard-accessible dropdown menu alternative to drag-and-drop.
+  - `drag-drop.css`: Styles for drag overlay, drop indicators, reduced motion support.
+  - Tests in `DragDrop.test.jsx` and `MoveToFolderMenu.test.jsx`.
 
 ## In Progress
 
-- **Drag-and-Drop Organization**:
-  - Using `@dnd-kit/core` and `@dnd-kit/sortable` for accessible drag-and-drop.
-  - `DraggableMedia.jsx`: Wrap media grid items for drag capability.
-  - `DroppableFolder.jsx`: Make folder tree items drop targets.
-  - Keyboard accessible with arrow key + Enter support.
+- **Gutenberg Integration**:
+  - Editor filters for `MediaUpload` and `PostFeaturedImage` with folder dropdown.
 
 ## Next
 
-- Gutenberg integration with folder dropdown filter.
 - Custom REST API endpoints for folders and suggestions.
 - CI workflow running PHPUnit and Vitest.
