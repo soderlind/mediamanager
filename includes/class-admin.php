@@ -25,7 +25,7 @@ class Admin
             return;
         }
 
-        $asset_file = MEDIAMANAGER_PLUGIN_DIR . 'build/admin.asset.php';
+        $asset_file = MEDIAMANAGER_PATH . 'build/admin.asset.php';
 
         if (!file_exists($asset_file)) {
             return;
@@ -35,7 +35,7 @@ class Admin
 
         wp_enqueue_script(
             'mediamanager-admin',
-            MEDIAMANAGER_PLUGIN_URL . 'build/admin.js',
+            MEDIAMANAGER_URL . 'build/admin.js',
             $asset['dependencies'] ?? ['wp-element', 'wp-api-fetch', 'wp-i18n', 'wp-icons'],
             $asset['version'] ?? MEDIAMANAGER_VERSION,
             true
@@ -43,7 +43,7 @@ class Admin
 
         wp_enqueue_style(
             'mediamanager-admin',
-            MEDIAMANAGER_PLUGIN_URL . 'src/admin/styles/folder-tree.css',
+            MEDIAMANAGER_URL . 'src/admin/styles/folder-tree.css',
             [],
             MEDIAMANAGER_VERSION
         );

@@ -16,3 +16,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 require dirname( __DIR__, 2 ) . '/includes/class-taxonomy.php';
 require dirname( __DIR__, 2 ) . '/includes/class-suggestions.php';
 require dirname( __DIR__, 2 ) . '/includes/class-admin.php';
+require dirname( __DIR__, 2 ) . '/includes/class-editor.php';

@@ -28,19 +28,22 @@ if (version_compare(get_bloginfo('version'), '6.8', '<')) {
 }
 
 define('MEDIAMANAGER_VERSION', '0.1.0');
-define('MEDIAMANAGER_PLUGIN_FILE', __FILE__);
-define('MEDIAMANAGER_PLUGIN_DIR', __DIR__ . '/');
-define('MEDIAMANAGER_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('MEDIAMANAGER_FILE', __FILE__);
+define('MEDIAMANAGER_PATH', __DIR__ . '/');
+define('MEDIAMANAGER_URL', plugin_dir_url(__FILE__));
 
-require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-taxonomy.php';
-if (file_exists(MEDIAMANAGER_PLUGIN_DIR . 'includes/class-admin.php')) {
-    require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-admin.php';
+require_once MEDIAMANAGER_PATH . 'includes/class-taxonomy.php';
+if (file_exists(MEDIAMANAGER_PATH . 'includes/class-admin.php')) {
+    require_once MEDIAMANAGER_PATH . 'includes/class-admin.php';
 }
-if (file_exists(MEDIAMANAGER_PLUGIN_DIR . 'includes/class-rest-api.php')) {
-    require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-rest-api.php';
+if (file_exists(MEDIAMANAGER_PATH . 'includes/class-rest-api.php')) {
+    require_once MEDIAMANAGER_PATH . 'includes/class-rest-api.php';
 }
-if (file_exists(MEDIAMANAGER_PLUGIN_DIR . 'includes/class-suggestions.php')) {
-    require_once MEDIAMANAGER_PLUGIN_DIR . 'includes/class-suggestions.php';
+if (file_exists(MEDIAMANAGER_PATH . 'includes/class-suggestions.php')) {
+    require_once MEDIAMANAGER_PATH . 'includes/class-suggestions.php';
+}
+if (file_exists(MEDIAMANAGER_PATH . 'includes/class-editor.php')) {
+    require_once MEDIAMANAGER_PATH . 'includes/class-editor.php';
 }
 
 add_action('plugins_loaded', static function () {
@@ -56,5 +59,9 @@ add_action('plugins_loaded', static function () {
 
     if (class_exists('MediaManager\\Suggestions')) {
         \MediaManager\Suggestions::init();
+    }
+
+    if (class_exists('MediaManager\\Editor')) {
+        \MediaManager\Editor::boot();
     }
 });

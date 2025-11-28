@@ -1,0 +1,84 @@
+/**
+ * Editor styles for Media Manager Gutenberg integration.
+ */
+
+/* Folder filter in media modal toolbar */
+.mm-folder-filter-wrap {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 12px;
+}
+
+.mm-folder-filter-wrap .components-base-control {
+	margin-bottom: 0;
+}
+
+.mm-folder-filter-wrap .components-base-control__label {
+	display: none;
+}
+
+.mm-folder-filter-wrap .components-select-control__input {
+	min-height: 30px;
+	max-width: 200px;
+	font-size: 13px;
+}
+
+/* Folder filter in MediaUpload toolbar */
+.mm-media-upload-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	background: #f0f0f1;
+	border-bottom: 1px solid #ddd;
+}
+
+.mm-media-upload-toolbar .components-base-control {
+	margin-bottom: 0;
+	flex: 1;
+	max-width: 250px;
+}
+
+.mm-media-upload-toolbar .components-select-control__input {
+	min-height: 32px;
+}
+
+/* Folder indicator in block toolbar */
+.mm-folder-indicator {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 4px 8px;
+	background: #007cba;
+	color: white;
+	border-radius: 2px;
+	font-size: 12px;
+	margin-left: 8px;
+}
+
+.mm-folder-indicator svg {
+	fill: currentColor;
+	width: 16px;
+	height: 16px;
+}
+
+/* Media modal adjustments */
+.media-modal .mm-folder-filter-wrap {
+	margin-left: 12px;
+}
+
+.media-modal .attachments-browser .media-toolbar-secondary {
+	display: flex;
+	align-items: center;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 782px) {
+	.mm-folder-filter-wrap .components-select-control__input {
+		max-width: 150px;
+	}
+
+	.mm-media-upload-toolbar {
+		flex-wrap: wrap;
+	}
+}

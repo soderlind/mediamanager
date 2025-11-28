@@ -69,8 +69,8 @@ class AdminTest extends TestCase
      */
     public function test_enqueue_scripts_skips_when_no_asset_file(): void
     {
-        if (!defined('MEDIAMANAGER_PLUGIN_DIR')) {
-            define('MEDIAMANAGER_PLUGIN_DIR', '/tmp/mediamanager-test/');
+        if (!defined('MEDIAMANAGER_PATH')) {
+            define('MEDIAMANAGER_PATH', '/tmp/mediamanager-test/');
         }
 
         Functions\expect('wp_enqueue_script')->never();

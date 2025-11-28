@@ -24,10 +24,18 @@ This document tracks the evolving design of the Media Manager plugin.
   - `drag-drop.css`: Styles for drag overlay, drop indicators, reduced motion support.
   - Tests in `DragDrop.test.jsx` and `MoveToFolderMenu.test.jsx`.
 
+- **Gutenberg Integration**:
+  - `src/editor/components/FolderFilter.jsx`: Dropdown component for filtering media by folder in block editor.
+  - `src/editor/components/MediaUploadFilter.jsx`: Enhanced `MediaUpload` wrapper using `addFilter` on `editor.MediaUpload`.
+  - `src/editor/index.js`: Entry point that registers filters and extends `wp.media.view.MediaFrame`.
+  - `src/editor/styles/editor.css`: Editor-specific styles for folder filter UI.
+  - `includes/class-editor.php`: Enqueues editor scripts on `enqueue_block_editor_assets`, filters `ajax_query_attachments_args` for folder/uncategorized filtering.
+  - Tests in `tests/js/editor/FolderFilter.test.jsx` and `tests/js/editor/MediaUploadFilter.test.jsx`.
+  - PHP tests in `tests/php/EditorTest.php`.
+
 ## In Progress
 
-- **Gutenberg Integration**:
-  - Editor filters for `MediaUpload` and `PostFeaturedImage` with folder dropdown.
+- None.
 
 ## Next
 
