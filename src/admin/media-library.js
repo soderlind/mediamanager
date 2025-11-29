@@ -41,8 +41,17 @@ jQuery(document).on('click', '.view-switch a', function() {
  * This ensures the button appears on both grid and list views.
  */
 function addFolderToggleButtonToPage() {
-	// Don't add twice
-	if (jQuery('.mm-folder-toggle-button').length) {
+	// Check if folder view should be active on load
+	const savedPref = localStorage.getItem('mm_folder_view');
+	const urlParams = new URLSearchParams(window.location.search);
+	const shouldBeActive = savedPref === '1' || urlParams.has('mm_folder');
+	
+	// If button already exists, just update its state
+	const $existingButton = jQuery('.mm-folder-toggle-button');
+	if ($existingButton.length) {
+		if (shouldBeActive) {
+			$existingButton.addClass('is-active');
+		}
 		return;
 	}
 	
@@ -54,7 +63,7 @@ function addFolderToggleButtonToPage() {
 	
 	if ($viewSwitcher.length) {
 		const $button = jQuery(`
-			<a href="#" class="mm-folder-toggle-button" title="${__('Show Folders', 'mediamanager')}">
+			<a href="#" class="mm-folder-toggle-button${shouldBeActive ? ' is-active' : ''}" title="${__('Show Folders', 'mediamanager')}">
 				<span class="screen-reader-text">${__('Show Folders', 'mediamanager')}</span>
 				${folderIcon}
 			</a>
@@ -217,7 +226,7 @@ function alignSidebarWithGrid(browser) {
 
 /**
  * Setup sticky sidebar behavior using JavaScript.
- * Listens to scroll events and updates sidebar position.
+ * Listens to scroll events and updates sidebar position using transform for smooth animation.
  */
 function setupStickySidebar(browser) {
 	// Wait for sidebar to be rendered by React
@@ -238,15 +247,18 @@ function setupStickySidebar(browser) {
 		// Admin bar height (sticky admin bar)
 		const adminBarHeight = 32;
 		
+		// Throttle for performance
+		let ticking = false;
+		
 		function updateSidebarPosition() {
 			const wrapperRect = attachmentsWrapper.getBoundingClientRect();
 			
 			// How far is the wrapper from the top of viewport?
 			const wrapperTop = wrapperRect.top;
 			
-			// If wrapper top is at or below admin bar, sidebar at natural position (top: 0)
+			// If wrapper top is at or below admin bar, sidebar at natural position
 			if (wrapperTop >= adminBarHeight) {
-				sidebar.style.top = '0px';
+				sidebar.style.transform = 'translateY(0)';
 			} else {
 				// Wrapper has scrolled up past admin bar
 				// Move sidebar down to stay visible below admin bar
@@ -256,19 +268,30 @@ function setupStickySidebar(browser) {
 				const maxOffset = wrapperRect.height - sidebar.offsetHeight;
 				const clampedOffset = Math.min(offset, Math.max(0, maxOffset));
 				
-				sidebar.style.top = `${clampedOffset}px`;
+				sidebar.style.transform = `translateY(${clampedOffset}px)`;
+			}
+			
+			ticking = false;
+		}
+		
+		function onScroll() {
+			if (!ticking) {
+				requestAnimationFrame(updateSidebarPosition);
+				ticking = true;
 			}
 		}
 		
-		// Listen to window scroll (whole page scrolls)
-		window.addEventListener('scroll', updateSidebarPosition, { passive: true });
+		// Listen to window scroll and resize
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onScroll, { passive: true });
 		
 		// Initial position
 		updateSidebarPosition();
 		
 		// Store cleanup function
 		sidebar._cleanupSticky = () => {
-			window.removeEventListener('scroll', updateSidebarPosition);
+			window.removeEventListener('scroll', onScroll);
+			window.removeEventListener('resize', onScroll);
 		};
 	};
 	

@@ -17,16 +17,28 @@
 	text-decoration: none;
 	text-align: center;
 	box-sizing: border-box;
+	border-radius: 4px;
+	transition: color 0.1s, box-shadow 0.1s;
 }
 
-.mm-folder-toggle-button:hover,
-.mm-folder-toggle-button:focus {
+.mm-folder-toggle-button:hover {
 	color: #135e96;
 	text-decoration: none;
 }
 
+.mm-folder-toggle-button:focus {
+	color: #135e96;
+	text-decoration: none;
+	box-shadow: 0 0 0 2px #2271b1;
+	outline: none;
+}
+
+.mm-folder-toggle-button:active {
+	box-shadow: 0 0 0 2px #2271b1;
+}
+
 .mm-folder-toggle-button.is-active {
-	color: #1d2327;
+	color: #2271b1;
 }
 
 .mm-folder-toggle-button svg {
@@ -49,6 +61,9 @@
 	overflow-y: auto;
 	z-index: 75;
 	display: none;
+	/* Use transform for smoother animations */
+	will-change: transform;
+	transform: translateY(0);
 }
 
 /* Show when folder view is active */

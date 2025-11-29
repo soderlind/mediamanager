@@ -46,15 +46,36 @@ function FolderItem({ folder, selectedId, onSelect, level = 0 }) {
 		}
 	}, [shouldAutoExpand]);
 
+	// Handle keyboard navigation
+	const handleKeyDown = (e) => {
+		if (e.key === 'ArrowRight' && hasChildren && !expanded) {
+			e.preventDefault();
+			setManualExpanded(true);
+		} else if (e.key === 'ArrowLeft' && hasChildren && expanded) {
+			e.preventDefault();
+			setManualExpanded(false);
+		} else if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			onSelect(folder.id);
+		}
+	};
+
 	return (
-		<li className="mm-folder-item">
+		<li 
+			className="mm-folder-item"
+			role="treeitem"
+			aria-expanded={hasChildren ? expanded : undefined}
+			aria-selected={isSelected}
+		>
 			<DroppableFolder folderId={folder.id}>
 				<button
 					type="button"
 					className={`mm-folder-button ${isSelected ? 'is-selected' : ''}`}
 					style={{ paddingLeft: `${level * 16 + 8}px` }}
 					onClick={() => onSelect(folder.id)}
+					onKeyDown={handleKeyDown}
 					aria-current={isSelected ? 'true' : undefined}
+					title={folder.name}
 				>
 					{hasChildren && (
 						<span
@@ -63,6 +84,15 @@ function FolderItem({ folder, selectedId, onSelect, level = 0 }) {
 								e.stopPropagation();
 								setManualExpanded(!expanded);
 							}}
+							onKeyDown={(e) => {
+								if (e.key === 'Enter' || e.key === ' ') {
+									e.preventDefault();
+									e.stopPropagation();
+									setManualExpanded(!expanded);
+								}
+							}}
+							role="button"
+							tabIndex={0}
 							aria-label={expanded ? __('Collapse', 'mediamanager') : __('Expand', 'mediamanager')}
 						>
 							{expanded ? '▾' : '▸'}
@@ -70,12 +100,12 @@ function FolderItem({ folder, selectedId, onSelect, level = 0 }) {
 					)}
 					<span className="mm-folder-name">{folder.name}</span>
 					{typeof folder.count === 'number' && (
-						<span className="mm-folder-count">({folder.count})</span>
+						<span className="mm-folder-count" aria-label={`${folder.count} ${__('items', 'mediamanager')}`}>({folder.count})</span>
 					)}
 				</button>
 			</DroppableFolder>
 			{hasChildren && expanded && (
-				<ul className="mm-folder-children">
+				<ul className="mm-folder-children" role="group">
 					{folder.children.map((child) => (
 						<FolderItem
 							key={child.id}
@@ -196,23 +226,23 @@ export default function FolderTree({ onFolderSelect }) {
 
 	if (loading) {
 		return (
-			<div className="mm-folder-tree mm-folder-tree--loading">
-				<p>{__('Loading folders…', 'mediamanager')}</p>
-			</div>
+			<nav className="mm-folder-tree mm-folder-tree--loading" aria-label={__('Media folders', 'mediamanager')}>
+				<p aria-live="polite">{__('Loading folders…', 'mediamanager')}</p>
+			</nav>
 		);
 	}
 
 	return (
-		<div className="mm-folder-tree">
+		<nav className="mm-folder-tree" aria-label={__('Media folders', 'mediamanager')}>
 			<FolderManager
 				folders={flatFolders}
 				selectedId={selectedId}
 				onRefresh={fetchFolders}
 			/>
 			<BulkFolderAction onComplete={fetchFolders} />
-			<ul className="mm-folder-list">
+			<ul className="mm-folder-list" role="tree" aria-label={__('Folder tree', 'mediamanager')}>
 				{/* All Media */}
-				<li className="mm-folder-item">
+				<li className="mm-folder-item" role="treeitem" aria-selected={selectedId === null}>
 					<button
 						type="button"
 						className={`mm-folder-button ${selectedId === null ? 'is-selected' : ''}`}
@@ -224,7 +254,7 @@ export default function FolderTree({ onFolderSelect }) {
 				</li>
 
 				{/* Uncategorized (virtual) - droppable to remove from folders */}
-				<li className="mm-folder-item">
+				<li className="mm-folder-item" role="treeitem" aria-selected={selectedId === 'uncategorized'}>
 					<DroppableFolder folderId="uncategorized">
 						<button
 							type="button"
@@ -233,7 +263,7 @@ export default function FolderTree({ onFolderSelect }) {
 							aria-current={selectedId === 'uncategorized' ? 'true' : undefined}
 						>
 							<span className="mm-folder-name">{__('Uncategorized', 'mediamanager')}</span>
-							<span className="mm-folder-count">({uncategorizedCount})</span>
+							<span className="mm-folder-count" aria-label={`${uncategorizedCount} ${__('items', 'mediamanager')}`}>({uncategorizedCount})</span>
 						</button>
 					</DroppableFolder>
 				</li>
@@ -248,6 +278,6 @@ export default function FolderTree({ onFolderSelect }) {
 					/>
 				))}
 			</ul>
-		</div>
+		</nav>
 	);
 }
