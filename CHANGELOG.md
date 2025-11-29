@@ -20,11 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Folder tree sidebar in Media Library grid view
 - Toggle between grid view and folder view
 - Folder filtering in Media Library list view
-- Sticky sidebar that follows scroll position
+- Sticky sidebar with fixed positioning when scrolled past admin bar
 - Dynamic sidebar alignment with attachments grid (calculated positioning)
 - "Load more" button support with dynamic height adjustment
 - Smooth scroll-to-top when switching folders
 - "Add Media File" button switches to All Media when folder is selected
+- Bulk move action with compact check icon and yellow highlight indicator
 
 #### Gutenberg Block Editor Integration
 - Folder sidebar in block editor media selection

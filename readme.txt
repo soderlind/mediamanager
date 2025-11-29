@@ -95,9 +95,10 @@ Media Manager works entirely within the WordPress admin. It doesn't affect your 
 * Initial release
 * Virtual folder organization
 * Drag and drop support
-* Smart folder suggestions
-* Gutenberg integration
-* Bulk folder assignment
+* Sticky sidebar with fixed positioning on scroll
+* Bulk move action with compact UI
+* Smart folder suggestions (MIME type, EXIF, IPTC)
+* Gutenberg integration with folder sidebar
 * Settings page
 * Norwegian Bokmål translation
 
