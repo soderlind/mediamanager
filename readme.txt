@@ -32,7 +32,6 @@ Media Manager uses a custom taxonomy to assign media to folders. This means:
 * Your media files stay exactly where they are on the server
 * URLs never change when you reorganize
 * Folders can be nested to create hierarchies
-* One media item can belong to multiple folders (optional)
 
 = Smart Suggestions =
 
@@ -72,7 +71,7 @@ Yes! When inserting media in the block editor, you can filter by folder using th
 
 = Can I assign media to multiple folders? =
 
-Yes, a media item can belong to multiple folders if needed.
+No, each media item belongs to one folder at a time. Moving media to a new folder removes it from the previous folder.
 
 = What happens if I delete a folder? =
 
