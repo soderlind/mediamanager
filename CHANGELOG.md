@@ -35,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Expand/collapse folder tree nodes with SVG chevron icons
 - Visual feedback during drag operations
 - Folder item counts
+- Hierarchical parent folder dropdown with visual indentation
+- Pre-select current folder as parent when creating subfolders
 
 #### REST API
 - Full CRUD operations for folders
