@@ -216,6 +216,66 @@ function alignSidebarWithGrid(browser) {
 }
 
 /**
+ * Setup sticky sidebar behavior using JavaScript.
+ * Listens to scroll events and updates sidebar position.
+ */
+function setupStickySidebar(browser) {
+	// Wait for sidebar to be rendered by React
+	const waitForSidebar = () => {
+		const sidebar = document.querySelector('.mm-folder-tree-sidebar');
+		const attachmentsWrapper = browser.$el.find('.attachments-wrapper')[0];
+		
+		if (!sidebar) {
+			// Try again in 100ms
+			setTimeout(waitForSidebar, 100);
+			return;
+		}
+		
+		if (!attachmentsWrapper) {
+			return;
+		}
+		
+		// Admin bar height (sticky admin bar)
+		const adminBarHeight = 32;
+		
+		function updateSidebarPosition() {
+			const wrapperRect = attachmentsWrapper.getBoundingClientRect();
+			
+			// How far is the wrapper from the top of viewport?
+			const wrapperTop = wrapperRect.top;
+			
+			// If wrapper top is at or below admin bar, sidebar at natural position (top: 0)
+			if (wrapperTop >= adminBarHeight) {
+				sidebar.style.top = '0px';
+			} else {
+				// Wrapper has scrolled up past admin bar
+				// Move sidebar down to stay visible below admin bar
+				const offset = adminBarHeight - wrapperTop;
+				
+				// Don't let sidebar go past bottom of wrapper
+				const maxOffset = wrapperRect.height - sidebar.offsetHeight;
+				const clampedOffset = Math.min(offset, Math.max(0, maxOffset));
+				
+				sidebar.style.top = `${clampedOffset}px`;
+			}
+		}
+		
+		// Listen to window scroll (whole page scrolls)
+		window.addEventListener('scroll', updateSidebarPosition, { passive: true });
+		
+		// Initial position
+		updateSidebarPosition();
+		
+		// Store cleanup function
+		sidebar._cleanupSticky = () => {
+			window.removeEventListener('scroll', updateSidebarPosition);
+		};
+	};
+	
+	waitForSidebar();
+}
+
+/**
  * Toggle folder view visibility.
  */
 function toggleFolderView(browser, show) {
@@ -233,6 +293,8 @@ function toggleFolderView(browser, show) {
 		setupDragAndDrop(browser);
 		// Align sidebar with grid
 		alignSidebarWithGrid(browser);
+		// Setup sticky behavior
+		setupStickySidebar(browser);
 	} else {
 		$container.removeClass('is-visible');
 		$toggle.removeClass('is-active');
