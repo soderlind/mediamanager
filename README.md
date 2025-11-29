@@ -83,7 +83,7 @@ npm test
 
 When inserting media in the block editor:
 
-1. Open the Media Library modal
+1. Open the Media Library modal from a block (e.g., Image or Gallery block etc.)
 2. Use the folder sidebar to filter by folder
 3. Select your media as usual
 
