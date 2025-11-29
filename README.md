@@ -6,7 +6,7 @@ Virtual folder organization and smart management for the WordPress Media Library
 ![PHP 8.3+](https://img.shields.io/badge/PHP-8.3%2B-purple)
 ![License: GPL v2+](https://img.shields.io/badge/License-GPL%20v2%2B-green)
 
-> As of January 2026, it has been 20 years since I released [ImageManager 2.0](https://github.com/soderlind/mediamanager/raw/refs/heads/main/assets/imagemanager-2006.mp4), which was for WordPress 2.0 at the time. Media Manager is my modern take on media organization for WordPress, built with React and modern tooling.
+> As of January 2026, it has been 20 years since I released [ImageManager 2.0](assets/imagemnager-2006.md), which was for WordPress 2.0 at the time. Media Manager is my modern take on media organization for WordPress, built with React and modern tooling.
 
 ## Description
 
