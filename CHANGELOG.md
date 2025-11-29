@@ -28,6 +28,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Folder sidebar in block editor media selection
 - Folder filter dropdown for quick navigation
 - Seamless integration with core media blocks (Image, Gallery, Cover, etc.)
+- SVG chevron icons for expand/collapse (consistent with Media Library)
+- Wider sidebar with proper folder count alignment
 
 #### Folder Management UI
 - Create, rename, and delete folders
