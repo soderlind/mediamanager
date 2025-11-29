@@ -36,6 +36,17 @@ jQuery(document).on('click', '.view-switch a', function() {
 	hideFolderView();
 });
 
+// When "Add Media File" button is clicked while a folder is selected, switch to All Media
+jQuery(document).on('click', '.page-title-action', function() {
+	// Check if a folder is currently selected (not All Media)
+	if (jQuery('.attachments-browser').hasClass('mm-folder-filtered')) {
+		// Select All Media via the global function
+		if (typeof window.mediaManagerSelectFolder === 'function') {
+			window.mediaManagerSelectFolder(null);
+		}
+	}
+});
+
 /**
  * Add folder toggle button to the view switcher (independent of browser).
  * This ensures the button appears on both grid and list views.
@@ -194,39 +205,16 @@ function showNotice(message, type = 'success') {
 }
 
 /**
- * Align folder tree sidebar with the first image in the grid.
+ * Align folder tree sidebar with the toolbar.
+ * This is now handled by setupStickySidebar, but we keep this for backward compatibility.
  */
 function alignSidebarWithGrid(browser) {
-	// Wait for images to load
-	setTimeout(() => {
-		const folderTree = document.querySelector('.mm-folder-tree');
-		const firstAttachment = document.querySelector('.attachments .attachment');
-		const sidebar = document.querySelector('.mm-folder-tree-sidebar');
-		
-		if (folderTree && sidebar) {
-			// Reset padding first
-			folderTree.style.paddingTop = '';
-			
-			if (firstAttachment) {
-				// Get positions relative to viewport
-				const sidebarRect = sidebar.getBoundingClientRect();
-				const attachmentRect = firstAttachment.getBoundingClientRect();
-				
-				// Calculate the offset needed
-				const topOffset = attachmentRect.top - sidebarRect.top;
-				
-				// Only apply if offset is reasonable (positive and not too large)
-				if (topOffset > 0 && topOffset < 200) {
-					folderTree.style.paddingTop = `${topOffset}px`;
-				}
-			}
-		}
-	}, 200);
+	// No-op - alignment is now handled by setupStickySidebar using transform
 }
 
 /**
  * Setup sticky sidebar behavior using JavaScript.
- * Listens to scroll events and updates sidebar position using transform.
+ * Aligns sidebar with the attachments grid and makes it sticky on scroll.
  */
 function setupStickySidebar(browser) {
 	// Wait for sidebar to be rendered by React
@@ -247,33 +235,65 @@ function setupStickySidebar(browser) {
 		const adminBarHeight = 32;
 		let ticking = false;
 		
-		// Get the initial offset - how far below the wrapper top the attachments start
-		function getAttachmentsOffset() {
-			const wrapperRect = attachmentsWrapper.getBoundingClientRect();
-			const attachmentsRect = attachments.getBoundingClientRect();
-			return attachmentsRect.top - wrapperRect.top;
+		// Get the offset from wrapper top to attachments grid
+		function getContentOffset() {
+			// Use the attachments container offsetTop plus padding/margin adjustments
+			const style = window.getComputedStyle(attachments);
+			const paddingTop = parseInt(style.paddingTop, 10) || 0;
+			
+			// Grid items have spacing that's not captured by margin (could be gap or padding)
+			// Add 8px to align sidebar with actual image top
+			const gridSpacing = 8;
+			
+			return (attachments.offsetTop || 0) + paddingTop + gridSpacing;
 		}
 		
-		// Cache initial offset (recalculate on resize)
-		let initialOffset = getAttachmentsOffset();
+		// Cache initial offset
+		let initialOffset = getContentOffset();
+		
+		// Calculate offset after content is loaded
+		function recalculateOffset() {
+			initialOffset = getContentOffset();
+			// Ensure offset is never negative
+			if (initialOffset < 0) initialOffset = 0;
+			updateSidebarPosition();
+		}
+		
+		// Initial calculation with delays to ensure content is rendered
+		setTimeout(recalculateOffset, 100);
+		setTimeout(recalculateOffset, 300);
+		setTimeout(recalculateOffset, 600);
+		
+		// Watch for uploader visibility changes
+		const uploaderInline = browser.$el.find('.uploader-inline')[0];
+		if (uploaderInline) {
+			const observer = new MutationObserver(() => {
+				setTimeout(recalculateOffset, 50);
+			});
+			observer.observe(uploaderInline, { 
+				attributes: true, 
+				attributeFilter: ['style', 'class'] 
+			});
+		}
 		
 		function updateSidebarPosition() {
-			const wrapperRect = attachmentsWrapper.getBoundingClientRect();
-			const wrapperTop = wrapperRect.top;
+			// Get current scroll-aware position of attachments
+			const attachmentsRect = attachments.getBoundingClientRect();
+			const attachmentsTop = attachmentsRect.top;
 			
-			// The sidebar should align with the attachments, not the wrapper top
-			// So we add initialOffset to the sidebar's natural position
+			// Target position: just below admin bar
 			const targetTop = adminBarHeight;
-			const currentNaturalTop = wrapperTop + initialOffset;
 			
-			if (currentNaturalTop >= targetTop) {
-				// Attachments haven't scrolled past the target position yet
-				// Keep sidebar at its natural offset position
+			if (attachmentsTop >= targetTop) {
+				// Attachments haven't scrolled past the admin bar yet
+				// Position sidebar at the attachments level using stable offset
 				sidebar.style.transform = `translateY(${initialOffset}px)`;
 			} else {
-				// Attachments have scrolled past target - stick sidebar
-				const offset = targetTop - wrapperTop;
-				sidebar.style.transform = `translateY(${offset}px)`;
+				// Attachments have scrolled past - make sidebar sticky
+				// Calculate how much the wrapper has scrolled past the target
+				const wrapperRect = attachmentsWrapper.getBoundingClientRect();
+				const stickyOffset = targetTop - wrapperRect.top;
+				sidebar.style.transform = `translateY(${stickyOffset}px)`;
 			}
 			
 			ticking = false;
@@ -287,9 +307,7 @@ function setupStickySidebar(browser) {
 		}
 		
 		function onResize() {
-			// Recalculate initial offset on resize
-			initialOffset = getAttachmentsOffset();
-			onScroll();
+			recalculateOffset();
 		}
 		
 		window.addEventListener('scroll', onScroll, { passive: true });
@@ -403,15 +421,20 @@ function injectFolderTree(browser) {
 	container.id = 'mm-folder-tree';
 	container.className = 'mm-folder-tree-sidebar';
 
-	// Insert sidebar inside attachments-wrapper at the beginning
-	// This keeps it in the scrollable area with the grid
+	// Find the best insertion point - we want the sidebar next to attachments,
+	// not overlapping the uploader
 	const $attachmentsWrapper = browser.$el.find('.attachments-wrapper').first();
+	const $attachmentsBrowser = browser.$el;
 	
 	if ($attachmentsWrapper.length) {
+		// Insert sidebar into attachments-wrapper
 		$attachmentsWrapper.prepend(container);
+		
+		// Make attachments-wrapper a flex container to properly position sidebar
+		// This is set via CSS, but we need to ensure the relationship is correct
 	} else {
 		// Fallback: prepend to browser element
-		browser.$el.prepend(container);
+		$attachmentsBrowser.prepend(container);
 	}
 
 	// Mount React component

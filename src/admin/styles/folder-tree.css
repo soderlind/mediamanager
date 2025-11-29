@@ -47,7 +47,7 @@
 	height: 20px;
 }
 
-/* Folder tree sidebar - hidden by default, absolute positioning with JS sticky */
+/* Folder tree sidebar - hidden by default */
 .mm-folder-tree-sidebar {
 	position: absolute;
 	top: 0;
@@ -61,7 +61,7 @@
 	z-index: 75;
 	display: none;
 	will-change: transform;
-	transform: translateY(0);
+	/* Initial transform will be set by JS to align with attachments */
 }
 
 /* Show when folder view is active */
@@ -80,9 +80,9 @@
 	margin-left: 220px !important;
 }
 
-/* Uploader positioning when sidebar is visible */
+/* Uploader positioning when sidebar is visible - don't push it, let it span full width */
 .attachments-browser.mm-sidebar-visible .uploader-inline {
-	left: 220px !important;
+	/* Don't adjust uploader - it should remain full width above the sidebar */
 }
 
 .mm-folder-tree-container {
@@ -274,9 +274,15 @@ body.mm-internal-drag .uploader-window {
 	pointer-events: none !important;
 }
 
-/* Hide uploader when viewing a specific folder (not All Media) */
+/* Hide uploader drop zone when viewing a specific folder (not All Media) */
+/* Use visibility instead of display to keep the upload button working */
 .mm-folder-filtered .uploader-inline {
-	display: none !important;
+	visibility: hidden !important;
+	height: 0 !important;
+	min-height: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	overflow: hidden !important;
 }
 
 /* Smooth loading transition for folder switching */
