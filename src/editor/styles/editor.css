@@ -8,10 +8,11 @@
 	top: 0;
 	left: 0;
 	bottom: 0;
-	width: 200px;
+	width: 220px;
 	border-right: 1px solid #dcdcde;
 	background: #f6f7f7;
 	overflow-y: auto;
+	overflow-x: hidden;
 	z-index: 10;
 	padding-top: 8px;
 }
@@ -92,7 +93,7 @@
 
 /* Push attachments to make room for sidebar */
 .mm-has-folder-sidebar .attachments-wrapper {
-	padding-left: 200px !important;
+	padding-left: 220px !important;
 	box-sizing: border-box !important;
 }
 
