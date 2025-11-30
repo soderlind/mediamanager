@@ -81,14 +81,6 @@ Only the folder organization is removed. Your media files are not deleted.
 
 Media Manager works entirely within the WordPress admin. It doesn't affect your front-end theme.
 
-== Screenshots ==
-
-1. Folder sidebar in the Media Library
-2. Drag and drop media to folders
-3. Folder filter in Gutenberg block editor
-4. Smart folder suggestions on upload
-5. Settings page
-
 == Changelog ==
 
 = 0.1.1 =
