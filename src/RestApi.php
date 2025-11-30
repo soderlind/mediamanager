@@ -209,6 +209,26 @@ final class RestApi extends WP_REST_Controller {
 			]
 		);
 
+		// Folder counts filtered by media type.
+		register_rest_route(
+			$this->namespace,
+			'/folders/counts',
+			[
+				[
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => [ $this, 'get_folder_counts' ],
+					'permission_callback' => [ $this, 'get_folders_permissions_check' ],
+					'args'                => [
+						'media_type' => [
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_text_field',
+							'description'       => __( 'Filter counts by media type (image, audio, video, application).', 'mediamanager' ),
+						],
+					],
+				],
+			]
+		);
+
 		register_rest_route(
 			$this->namespace,
 			'/suggestions/(?P<media_id>[\d]+)/apply',
@@ -591,6 +611,106 @@ final class RestApi extends WP_REST_Controller {
 			],
 			200
 		);
+	}
+
+	/**
+	 * Get folder counts filtered by media type.
+	 *
+	 * @param WP_REST_Request $request Request object.
+	 * @return WP_REST_Response
+	 */
+	public function get_folder_counts( WP_REST_Request $request ): WP_REST_Response {
+		$media_type = $request->get_param( 'media_type' );
+
+		// Get all folders.
+		$terms = get_terms(
+			[
+				'taxonomy'   => 'media_folder',
+				'hide_empty' => false,
+			]
+		);
+
+		if ( is_wp_error( $terms ) ) {
+			return new WP_REST_Response( [], 200 );
+		}
+
+		$counts = [];
+
+		// Build mime type query based on media_type.
+		$mime_types = $this->get_mime_types_for_filter( $media_type );
+
+		foreach ( $terms as $term ) {
+			$query_args = [
+				'post_type'      => 'attachment',
+				'post_status'    => 'inherit',
+				'posts_per_page' => -1,
+				'fields'         => 'ids',
+				'tax_query'      => [
+					[
+						'taxonomy' => 'media_folder',
+						'field'    => 'term_id',
+						'terms'    => $term->term_id,
+					],
+				],
+			];
+
+			if ( ! empty( $mime_types ) ) {
+				$query_args['post_mime_type'] = $mime_types;
+			}
+
+			$query = new \WP_Query( $query_args );
+			$counts[ $term->term_id ] = $query->found_posts;
+		}
+
+		return new WP_REST_Response( $counts, 200 );
+	}
+
+	/**
+	 * Get MIME types for a given media type filter.
+	 *
+	 * @param string $media_type The media type filter (image, audio, video, application, or comma-separated MIME types).
+	 * @return array Array of MIME types.
+	 */
+	private function get_mime_types_for_filter( ?string $media_type ): array {
+		if ( empty( $media_type ) || $media_type === 'all' ) {
+			return [];
+		}
+
+		// If it contains commas, it's a list of MIME types from WordPress filter
+		if ( strpos( $media_type, ',' ) !== false ) {
+			return array_map( 'trim', explode( ',', $media_type ) );
+		}
+
+		// Match WordPress media library filter values.
+		switch ( $media_type ) {
+			case 'image':
+				return [ 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/tiff', 'image/heic' ];
+			case 'audio':
+				return [ 'audio/mpeg', 'audio/ogg', 'audio/wav', 'audio/x-ms-wma', 'audio/x-ms-wax', 'audio/flac', 'audio/aac', 'audio/m4a' ];
+			case 'video':
+				return [ 'video/mp4', 'video/webm', 'video/ogg', 'video/x-ms-wmv', 'video/x-ms-asf', 'video/avi', 'video/quicktime', 'video/x-msvideo' ];
+			case 'application':
+			case 'document':
+				return [
+					'application/pdf',
+					'application/msword',
+					'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+					'application/vnd.ms-excel',
+					'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+					'application/vnd.ms-powerpoint',
+					'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+					'application/zip',
+					'application/x-rar-compressed',
+					'text/plain',
+					'text/csv',
+				];
+			default:
+				// If it looks like a full mime type, use it directly.
+				if ( strpos( $media_type, '/' ) !== false ) {
+					return [ $media_type ];
+				}
+				return [];
+		}
 	}
 
 	/**
