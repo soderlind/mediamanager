@@ -1,20 +1,42 @@
 {
 	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
-	"landingPage": "l/wp-admin/upload.php",
+	"meta": {
+		"title": "Media Manager",
+		"author": "bph",
+		"description": "Virtual folder organization and smart management for the WordPress Media Library.",
+		"categories": [
+			"Plugins",
+			"Media"
+		]
+	},
+	"landingPage": "/wp-admin/upload.php",
+	"steps": [
+		{
+			"step": "importWxr",
+			"file": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/wordpress/blueprints/trunk/blueprints/tt5-demo/tt5-demo-content.xml"
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "url",
+				"url": "https://github.com/soderlind/mediamanager/releases/latest/download/mediamanager.zip"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require_once 'wordpress/wp-load.php'; wp_insert_term('Photos', 'media_folder'); wp_insert_term('Videos', 'media_folder'); wp_insert_term('Documentation', 'media_folder'); $photos = get_term_by('slug', 'photos', 'media_folder'); if ($photos) { wp_insert_term('Vacation 2025', 'media_folder', array('parent' => $photos->term_id)); } ?>"
+		}
+	],
 	"preferredVersions": {
 		"php": "8.3",
 		"wp": "latest"
 	},
-	"steps": [
-		{
-			"step": "login",
-			"username": "admin",
-			"password": "password"
-		},
-		{
-			"step": "installPlugin",
-			"resource": "url",
-			"url": "https://github.com/soderlind/mediamanager/releases/latest/download/mediamanager.zip"
-		}
-	]
+	"features": {},
+	"login": true
 }
