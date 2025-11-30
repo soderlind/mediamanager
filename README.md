@@ -32,14 +32,11 @@ Media Manager brings virtual folder organization to your WordPress Media Library
 
 ## Installation
 
-- **Quick Install**
+- Download [`mediamanager.zip`](https://github.com/soderlind/mediamanager/releases/latest/download/mediamanager.zip)
+- Upload via  Plugins > Add New > Upload Plugin
+- Activate the plugin.
 
-   - Download [`mediamanager.zip`](https://github.com/soderlind/mediamanager/releases/latest/download/mediamanager.zip)
-   - Upload via  Plugins > Add New > Upload Plugin
-   - Activate the plugin.
-
-- **Updates**
-   * Plugin [updates are handled automatically](https://github.com/soderlind/wordpress-plugin-github-updater#readme) via GitHub. No need to manually download and install updates.
+Plugin [updates are handled automatically](https://github.com/soderlind/wordpress-plugin-github-updater#readme) via GitHub. No need to manually download and install updates.
 
 ### Development
 
