@@ -3,7 +3,7 @@ Contributors: PerS
 Tags: media, folders, organization, media library, virtual folders
 Requires at least: 6.8
 Tested up to: 6.8
-Stable tag: 0.1.7
+Stable tag: 0.1.8
 Requires PHP: 8.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -83,6 +83,10 @@ Media Manager works entirely within the WordPress admin. It doesn't affect your 
 
 == Changelog ==
 
+= 0.1.8 =
+* Added: Folder item counts now reflect the selected media type filter (Images, Videos, Audio, Documents)
+* Added: New REST API endpoint for filtered folder counts
+
 = 0.1.7 =
 * Added: After bulk moving files, focus automatically switches to the target folder
 
@@ -124,6 +128,9 @@ Media Manager works entirely within the WordPress admin. It doesn't affect your 
 * Norwegian Bokmål translation
 
 == Upgrade Notice ==
+
+= 0.1.8 =
+Folder counts now update based on the selected media type filter.
 
 = 0.1.7 =
 Bulk move now focuses on target folder to show moved files.

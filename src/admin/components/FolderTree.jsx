@@ -10,9 +10,10 @@
  * - BulkFolderAction for bulk operations
  * - URL state management
  * - Global refresh function
+ * - Media type filter tracking for accurate counts
  */
 
-import { useEffect, useCallback } from '@wordpress/element';
+import { useEffect, useCallback, useState } from '@wordpress/element';
 import useFolderData from '../../shared/hooks/useFolderData';
 import { BaseFolderTree } from '../../shared/components';
 import { DroppableFolder } from './DroppableFolder';
@@ -26,6 +27,9 @@ import BulkFolderAction from './BulkFolderAction';
  * @param {Function} props.onFolderSelect Called when a folder is selected.
  */
 export default function FolderTree({ onFolderSelect }) {
+	// Track the current media type filter from WordPress dropdown
+	const [mediaType, setMediaType] = useState('');
+
 	const {
 		folders,
 		flatFolders,
@@ -37,8 +41,63 @@ export default function FolderTree({ onFolderSelect }) {
 		handleSelect: baseHandleSelect,
 	} = useFolderData({ 
 		trackUrl: true, 
-		onFolderSelect 
+		onFolderSelect,
+		mediaType,
 	});
+
+	// Listen for changes to the WordPress media type filter dropdown
+	useEffect(() => {
+		/**
+		 * Get the current media type filter value from WordPress dropdown.
+		 * WordPress uses select#media-attachment-filters with class .attachment-filters
+		 */
+		function getCurrentMediaType() {
+			// The WordPress media type filter dropdown - try multiple selectors
+			const filterSelect = document.querySelector(
+				'select.attachment-filters[id="media-attachment-filters"], ' +
+				'select.attachment-filters[id*="media-attachment"]'
+			);
+			if (filterSelect) {
+				const value = filterSelect.value;
+				// WordPress uses values like 'image', 'audio', 'video', 'application'
+				// Also handles 'all' which means no filter
+				return value === 'all' ? '' : value;
+			}
+			return '';
+		}
+
+		// Set initial value
+		setMediaType(getCurrentMediaType());
+
+		// Watch for changes to the filter dropdown using event delegation
+		function handleFilterChange(e) {
+			// Match any attachment-filters select that contains media type options
+			if (e.target.matches('select.attachment-filters') && 
+				(e.target.id === 'media-attachment-filters' || e.target.id.includes('media-attachment'))) {
+				const value = e.target.value;
+				setMediaType(value === 'all' ? '' : value);
+			}
+		}
+
+		document.addEventListener('change', handleFilterChange);
+
+		// Also watch for WordPress Backbone events if available
+		if (typeof wp !== 'undefined' && wp.media && wp.media.frame) {
+			const frame = wp.media.frame;
+			if (frame.content && frame.content.get) {
+				const content = frame.content.get();
+				if (content && content.collection) {
+					content.collection.on('change:type', () => {
+						setMediaType(getCurrentMediaType());
+					});
+				}
+			}
+		}
+
+		return () => {
+			document.removeEventListener('change', handleFilterChange);
+		};
+	}, []);
 
 	// Extended select handler that also exposes globally
 	const handleSelect = useCallback((folderId) => {
