@@ -655,10 +655,10 @@ final class RestApi extends WP_REST_Controller {
 			];
 
 			if ( ! empty( $mime_types ) ) {
-				$query_args['post_mime_type'] = $mime_types;
+				$query_args[ 'post_mime_type' ] = $mime_types;
 			}
 
-			$query = new \WP_Query( $query_args );
+			$query                    = new \WP_Query( $query_args );
 			$counts[ $term->term_id ] = $query->found_posts;
 		}
 
