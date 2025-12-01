@@ -55,7 +55,7 @@ export function DroppableFolder({ folderId, children, className = '' }) {
 					window.mediaManagerMoveToFolder(data.mediaId, folderId);
 					
 					// After moving, select the target folder (if setting is enabled)
-					const { jumpToFolderAfterMove = true } = window.mediaManagerData || {};
+					const { jumpToFolderAfterMove = false } = window.mediaManagerData || {};
 					if (jumpToFolderAfterMove && window.mediaManagerSelectFolder) {
 						// Small delay to let the move complete
 						setTimeout(() => {

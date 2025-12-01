@@ -46,7 +46,7 @@ final class Settings {
 		'show_uncategorized'        => true,
 		'enable_drag_drop'          => true,
 		'sidebar_default_visible'   => false,
-		'jump_to_folder_after_move' => true,
+		'jump_to_folder_after_move' => false,
 	];
 
 	/**

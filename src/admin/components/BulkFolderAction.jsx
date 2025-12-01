@@ -151,7 +151,7 @@ export default function BulkFolderAction({ onComplete }) {
 			}
 			
 			// Select the target folder to show moved items (if setting is enabled)
-			const { jumpToFolderAfterMove = true } = window.mediaManagerData || {};
+			const { jumpToFolderAfterMove = false } = window.mediaManagerData || {};
 			if (jumpToFolderAfterMove) {
 				// Delay to ensure refresh completes
 				setTimeout(() => {
