@@ -17,7 +17,6 @@ Media Manager brings virtual folder organization to your WordPress Media Library
 - **Virtual Folders**: Create hierarchical folder structures to organize media
 - **Drag & Drop**: Easily move media between folders with drag and drop
 - **Sticky Sidebar**: Folder navigation stays visible while scrolling through media
-- **Smart Suggestions**: Automatic folder suggestions based on file type, EXIF data, and IPTC keywords
 - **Gutenberg Integration**: Filter media by folder directly in the block editor
 - **Bulk Actions**: Move multiple media items at once
 - **Keyboard Accessible**: Full keyboard navigation support
@@ -77,16 +76,6 @@ When inserting media in the block editor:
 2. Use the folder sidebar to filter by folder
 3. Select your media as usual
 
-### Smart Suggestions
-
-When uploading new media, the plugin can suggest folders based on:
-
-- **File type**: Images, videos, documents, etc.
-- **EXIF date**: Photo creation date from camera metadata
-- **IPTC keywords**: Embedded keywords in images
-
-Configure suggestions in **Settings > Folder Settings**.
-
 ## Folder Structure
 
 ```
@@ -125,12 +114,6 @@ The plugin provides REST API endpoints under `mediamanager/v1`:
 - `DELETE /folders/{id}` - Delete a folder
 - `POST /folders/{id}/media` - Add media to folder
 - `DELETE /folders/{id}/media` - Remove media from folder
-
-### Suggestions
-
-- `GET /suggestions/{media_id}` - Get suggestions for media
-- `POST /suggestions/{media_id}/apply` - Apply a suggestion
-- `POST /suggestions/{media_id}/dismiss` - Dismiss suggestions
 
 ## Hooks & Filters
 

@@ -19,7 +19,6 @@ Media Manager brings virtual folder organization to your WordPress Media Library
 * **Virtual Folders** – Create hierarchical folder structures to organize media
 * **Drag & Drop** – Easily move media between folders with drag and drop
 * **Sticky Sidebar** – Folder navigation stays visible while scrolling through media
-* **Smart Suggestions** – Automatic folder suggestions based on file type, EXIF data, and IPTC keywords
 * **Gutenberg Integration** – Filter media by folder directly in the block editor
 * **Bulk Actions** – Move multiple media items at once
 * **Keyboard Accessible** – Full keyboard navigation support
@@ -32,16 +31,6 @@ Media Manager uses a custom taxonomy to assign media to folders. This means:
 * Your media files stay exactly where they are on the server
 * URLs never change when you reorganize
 * Folders can be nested to create hierarchies
-
-= Smart Suggestions =
-
-When you upload new media, Media Manager can automatically suggest folders based on:
-
-* **File type** – Images, videos, documents, audio files
-* **EXIF date** – Photo creation date from camera metadata
-* **IPTC keywords** – Embedded keywords in professional images
-
-Configure these options in Settings → Folder Settings.
 
 == Installation ==
 
@@ -128,7 +117,7 @@ Media Manager works entirely within the WordPress admin. It doesn't affect your 
 * Drag and drop support
 * Sticky sidebar with fixed positioning on scroll
 * Bulk move action with compact UI
-* Smart folder suggestions (MIME type, EXIF, IPTC)
+
 * Gutenberg integration with folder sidebar
 * Settings page
 * Norwegian Bokmål translation
