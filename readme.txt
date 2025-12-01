@@ -3,7 +3,7 @@ Contributors: PerS
 Tags: media, folders, organization, media library, virtual folders
 Requires at least: 6.8
 Tested up to: 6.8
-Stable tag: 0.1.9
+Stable tag: 0.1.10
 Requires PHP: 8.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -72,6 +72,9 @@ Media Manager works entirely within the WordPress admin. It doesn't affect your 
 
 == Changelog ==
 
+= 0.1.10 =
+* Fixed: Sort order is now preserved after moving files between folders
+
 = 0.1.9 =
 * Added: New "Jump to Folder After Move" setting (enabled by default) to control whether view switches to target folder after moving files
 * Added: URL now uses `mode=folder` parameter when folder view is active
@@ -123,6 +126,9 @@ Media Manager works entirely within the WordPress admin. It doesn't affect your 
 * Norwegian Bokmål translation
 
 == Upgrade Notice ==
+
+= 0.1.10 =
+Fix: Sort order is now preserved after moving files.
 
 = 0.1.9 =
 New setting to control jump-to-folder behavior after moving files. Bulk select now auto-disables after moves.

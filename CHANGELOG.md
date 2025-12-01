@@ -5,6 +5,11 @@ All notable changes to MediaManager will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.10] - 2025-12-01
+
+### Fixed
+- Sort order is now preserved after moving files between folders
+
 ## [0.1.9] - 2025-12-01
 
 ### Added
@@ -145,6 +150,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Leverages WordPress REST API for all operations
 
 
+[0.1.10]: https://github.com/soderlind/mediamanager/compare/0.1.9...0.1.10
 [0.1.9]: https://github.com/soderlind/mediamanager/compare/0.1.8...0.1.9
 [0.1.8]: https://github.com/soderlind/mediamanager/compare/0.1.7...0.1.8
 [0.1.7]: https://github.com/soderlind/mediamanager/compare/0.1.6...0.1.7
