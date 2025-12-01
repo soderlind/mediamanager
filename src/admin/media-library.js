@@ -161,6 +161,7 @@ async function moveMediaToFolder(mediaId, folderId) {
 
 /**
  * Refresh the media library after a move operation.
+ * Preserves the current sort order.
  */
 function refreshMediaLibrary() {
 	// Simplest approach: re-trigger the current folder selection
@@ -174,12 +175,20 @@ function refreshMediaLibrary() {
 		return;
 	}
 	
-	// Fallback: try to refresh the collection directly
+	// Fallback: try to refresh the collection directly while preserving sort order
 	try {
 		if (wp.media?.frame?.content?.get) {
 			const content = wp.media.frame.content.get();
 			if (content && content.collection) {
+				// Preserve current sort order
+				const currentOrderby = content.collection.props.get('orderby') || 'date';
+				const currentOrder = content.collection.props.get('order') || 'DESC';
+				
 				content.collection.reset();
+				content.collection.props.set({
+					orderby: currentOrderby,
+					order: currentOrder
+				});
 				content.collection.more({ remove: false });
 			}
 		}
@@ -460,6 +469,10 @@ function injectFolderTree(browser) {
 					const currentCollection = browser.collection;
 					
 					if (currentCollection) {
+						// Preserve current sort order
+						const currentOrderby = currentCollection.props.get('orderby') || 'date';
+						const currentOrder = currentCollection.props.get('order') || 'DESC';
+						
 						// Add loading class for smooth transition
 						const $attachments = browser.$el.find('.attachments');
 						$attachments.addClass('mm-loading');
@@ -476,11 +489,25 @@ function injectFolderTree(browser) {
 						currentCollection.props.unset('media_folder');
 						currentCollection.props.unset('media_folder_exclude');
 
-						// Set the new filter
+						// Set the new filter while preserving sort order
 						if (folderId === 'uncategorized') {
-							currentCollection.props.set({ media_folder_exclude: 'all' });
+							currentCollection.props.set({ 
+								media_folder_exclude: 'all',
+								orderby: currentOrderby,
+								order: currentOrder
+							});
 						} else if (folderId) {
-							currentCollection.props.set({ media_folder: folderId });
+							currentCollection.props.set({ 
+								media_folder: folderId,
+								orderby: currentOrderby,
+								order: currentOrder
+							});
+						} else {
+							// All Media - just ensure sort order is preserved
+							currentCollection.props.set({
+								orderby: currentOrderby,
+								order: currentOrder
+							});
 						}
 						
 						// Force a complete reset and re-fetch
