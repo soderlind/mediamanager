@@ -3,7 +3,7 @@ Contributors: PerS
 Tags: media, folders, organization, media library, virtual folders
 Requires at least: 6.8
 Tested up to: 6.9
-Stable tag: 0.1.15
+Stable tag: 0.1.16
 Requires PHP: 8.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,10 @@ Only the folder organization is removed. Your media files are not deleted.
 Media Manager works entirely within the WordPress admin. It doesn't affect your front-end theme.
 
 == Changelog ==
+
+= 0.1.16 =
+* Added: uninstall.php for clean plugin removal (deletes folders, settings, transients, user meta)
+* Changed: Updated folder structure in README.md to reflect PSR-4 changes
 
 = 0.1.15 =
 * Added: Collapsing a parent folder now moves selection to the parent when a child folder is selected
@@ -146,6 +150,24 @@ Media Manager works entirely within the WordPress admin. It doesn't affect your 
 * Norwegian Bokmål translation
 
 == Upgrade Notice ==
+
+= 0.1.16 =
+Added uninstall.php for clean plugin removal.
+
+= 0.1.15 =
+Improved keyboard navigation: ArrowLeft moves to parent folder, collapsing parent selects it.
+
+= 0.1.14 =
+Edit Folder modal now allows moving folders to different parents.
+
+= 0.1.13 =
+New Show All Media setting. All settings now functional.
+
+= 0.1.12 =
+Jump to Folder After Move now defaults to disabled.
+
+= 0.1.11 =
+Fix: Moved files properly removed from source folder view.
 
 = 0.1.10 =
 Fix: Sort order is now preserved after moving files.

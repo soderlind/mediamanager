@@ -82,22 +82,23 @@ When inserting media in the block editor:
 mediamanager/
 ├── build/              # Compiled assets
 ├── docs/               # Documentation
-├── includes/           # PHP classes
-│   ├── class-admin.php
-│   ├── class-editor.php
-│   ├── class-rest-api.php
-│   ├── class-settings.php
-│   ├── class-suggestions.php
-│   └── class-taxonomy.php
 ├── languages/          # Translation files
 ├── src/
+│   ├── Admin.php       # Media Library integration
+│   ├── Editor.php      # Gutenberg integration  
+│   ├── RestApi.php     # REST API endpoints
+│   ├── Settings.php    # Settings page
+│   ├── Suggestions.php # Smart suggestions
+│   ├── Taxonomy.php    # Custom taxonomy
 │   ├── admin/          # Media Library UI
 │   │   ├── components/ # React components
 │   │   └── styles/     # CSS
-│   └── editor/         # Gutenberg integration
+│   ├── editor/         # Gutenberg integration
+│   └── shared/         # Shared components & hooks
 ├── tests/
 │   ├── js/             # Vitest tests
 │   └── php/            # PHPUnit tests
+├── uninstall.php       # Cleanup on uninstall
 └── mediamanager.php    # Main plugin file
 ```
 
