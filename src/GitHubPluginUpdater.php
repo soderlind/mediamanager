@@ -76,11 +76,14 @@ class GitHubPluginUpdater {
 	 *                     - enable_release_assets: Whether to enable release assets (default: true if name_regex provided)
 	 */
 	public function __construct( $config = array() ) {
-		// Validate required parameters
+		// Validate required parameters.
 		$required = array( 'github_url', 'plugin_file', 'plugin_slug' );
 		foreach ( $required as $key ) {
 			if ( empty( $config[ $key ] ) ) {
-				throw new \InvalidArgumentException( "Required parameter '{$key}' is missing or empty." );
+				throw new \InvalidArgumentException(
+					// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages are not output directly.
+					sprintf( 'Required parameter %s is missing or empty.', $key )
+				);
 			}
 		}
 
@@ -118,10 +121,8 @@ class GitHubPluginUpdater {
 			}
 
 		} catch (\Exception $e) {
-			// Log error if WordPress debug is enabled
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'GitHub Plugin Updater Error: ' . $e->getMessage() );
-			}
+			// Silently fail - update checker is non-critical.
+			unset( $e );
 		}
 	}
 

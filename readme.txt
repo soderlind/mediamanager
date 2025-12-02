@@ -3,7 +3,7 @@ Contributors: PerS
 Tags: media, folders, organization, media library, virtual folders
 Requires at least: 6.8
 Tested up to: 6.9
-Stable tag: 0.1.16
+Stable tag: 0.1.17
 Requires PHP: 8.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,11 @@ Only the folder organization is removed. Your media files are not deleted.
 Media Manager works entirely within the WordPress admin. It doesn't affect your front-end theme.
 
 == Changelog ==
+
+= 0.1.17 =
+* Fixed: Plugin Check compliance - added phpcs:ignore comments for false positives
+* Fixed: Prefixed global variables in uninstall.php
+* Fixed: Removed error_log debug function from GitHubPluginUpdater
 
 = 0.1.16 =
 * Added: uninstall.php for clean plugin removal (deletes folders, settings, transients, user meta)
@@ -153,6 +158,9 @@ Media Manager works entirely within the WordPress admin. It doesn't affect your 
 
 = 0.1.16 =
 Added uninstall.php for clean plugin removal.
+
+= 0.1.17 =
+Plugin Check compliance fixes.
 
 = 0.1.15 =
 Improved keyboard navigation: ArrowLeft moves to parent folder, collapsing parent selects it.

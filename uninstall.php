@@ -22,7 +22,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  */
 
 // Delete all terms in the media_folder taxonomy.
-$terms = get_terms(
+$mediamanager_terms = get_terms(
 	array(
 		'taxonomy'   => 'media_folder',
 		'hide_empty' => false,
@@ -30,9 +30,9 @@ $terms = get_terms(
 	)
 );
 
-if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
-	foreach ( $terms as $term_id ) {
-		wp_delete_term( $term_id, 'media_folder' );
+if ( ! is_wp_error( $mediamanager_terms ) && ! empty( $mediamanager_terms ) ) {
+	foreach ( $mediamanager_terms as $mediamanager_term_id ) {
+		wp_delete_term( $mediamanager_term_id, 'media_folder' );
 	}
 }
 
