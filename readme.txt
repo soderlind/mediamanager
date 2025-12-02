@@ -2,7 +2,7 @@
 Contributors: PerS
 Tags: media, folders, organization, media library, virtual folders
 Requires at least: 6.8
-Tested up to: 6.8
+Tested up to: 6.9
 Stable tag: 0.1.15
 Requires PHP: 8.3
 License: GPLv2 or later
