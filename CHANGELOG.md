@@ -5,6 +5,13 @@ All notable changes to MediaManager will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.17] - 2025-12-03
+
+### Fixed
+- Plugin Check compliance: Added phpcs:ignore comments for false positives
+- Prefixed global variables in `uninstall.php` with `mediamanager_` prefix
+- Removed `error_log` debug function from `GitHubPluginUpdater.php`
+
 ## [0.1.16] - 2025-12-02
 
 ### Added
@@ -199,6 +206,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Leverages WordPress REST API for all operations
 
 
+[0.1.17]: https://github.com/soderlind/mediamanager/compare/0.1.16...0.1.17
 [0.1.16]: https://github.com/soderlind/mediamanager/compare/0.1.15...0.1.16
 [0.1.15]: https://github.com/soderlind/mediamanager/compare/0.1.14...0.1.15
 [0.1.14]: https://github.com/soderlind/mediamanager/compare/0.1.13...0.1.14

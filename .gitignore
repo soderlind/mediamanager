@@ -10,3 +10,4 @@ coverage/
 .env
 .env.local
 *.log
+phpunit.xml.dist

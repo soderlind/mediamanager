@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name: Media Manager
  * Description: Virtual folder organization and smart management for the WordPress Media Library.
- * Version: 0.1.16
+ * Version: 0.1.17
  * Requires at least: 6.8
  * Requires PHP: 8.3
  * Author: Per Soderlind
@@ -62,12 +62,17 @@ define( 'MEDIAMANAGER_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * Load plugin text domain for translations.
+ * Using 'init' action with priority 0 for early loading.
+ *
+ * Note: This is required for GitHub-hosted plugins since WordPress.org
+ * automatic translation loading doesn't apply.
  *
  * @since 0.1.0
  */
 add_action( 'init', static function () {
+	// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Required for GitHub-hosted plugins.
 	load_plugin_textdomain( 'mediamanager', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-} );
+}, 0 );
 
 /*
  * Load Composer autoloader.
