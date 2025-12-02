@@ -3,7 +3,7 @@ Contributors: PerS
 Tags: media, folders, organization, media library, virtual folders
 Requires at least: 6.8
 Tested up to: 6.8
-Stable tag: 0.1.13
+Stable tag: 0.1.14
 Requires PHP: 8.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,10 @@ Only the folder organization is removed. Your media files are not deleted.
 Media Manager works entirely within the WordPress admin. It doesn't affect your front-end theme.
 
 == Changelog ==
+
+= 0.1.14 =
+* Added: Edit Folder modal now includes Parent Folder selector to move folders within hierarchy
+* Changed: "Rename Folder" modal renamed to "Edit Folder" for name and location changes
 
 = 0.1.13 =
 * Added: New "Show All Media" setting to show/hide the All Media option in sidebar

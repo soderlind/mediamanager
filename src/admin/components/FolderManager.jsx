@@ -26,6 +26,7 @@ export default function FolderManager({ folders = [], selectedId, onRefresh, onD
 	const [newFolderName, setNewFolderName] = useState('');
 	const [newFolderParent, setNewFolderParent] = useState(0);
 	const [renameFolderName, setRenameFolderName] = useState('');
+	const [renameFolderParent, setRenameFolderParent] = useState(0);
 	const [isProcessing, setIsProcessing] = useState(false);
 	const [error, setError] = useState('');
 
@@ -72,6 +73,18 @@ export default function FolderManager({ folders = [], selectedId, onRefresh, onD
 		return [
 			{ label: __('None (top level)', 'mediamanager'), value: '0' },
 			...buildHierarchicalOptions(folders),
+		];
+	}
+
+	/**
+	 * Build parent folder options for renaming/moving a folder.
+	 * Excludes the current folder and its descendants to prevent circular references.
+	 * Note: SelectControl requires string values.
+	 */
+	function getRenameParentOptions() {
+		return [
+			{ label: __('None (top level)', 'mediamanager'), value: '0' },
+			...buildHierarchicalOptions(folders, 0, 0, selectedId),
 		];
 	}
 
@@ -131,15 +144,17 @@ export default function FolderManager({ folders = [], selectedId, onRefresh, onD
 				method: 'PUT',
 				data: {
 					name: renameFolderName.trim(),
+					parent: renameFolderParent,
 				},
 			});
 
 			setRenameFolderName('');
+			setRenameFolderParent(0);
 			setIsRenameOpen(false);
-			showNotice(__('Folder renamed.', 'mediamanager'), 'success');
+			showNotice(__('Folder updated.', 'mediamanager'), 'success');
 			onRefresh?.();
 		} catch (err) {
-			setError(err.message || __('Failed to rename folder.', 'mediamanager'));
+			setError(err.message || __('Failed to update folder.', 'mediamanager'));
 		} finally {
 			setIsProcessing(false);
 		}
@@ -176,11 +191,12 @@ export default function FolderManager({ folders = [], selectedId, onRefresh, onD
 	}
 
 	/**
-	 * Open rename modal with current name.
+	 * Open rename modal with current name and parent.
 	 */
 	function openRenameModal() {
 		if (currentFolder) {
 			setRenameFolderName(currentFolder.name);
+			setRenameFolderParent(currentFolder.parent || 0);
 			setError('');
 			setIsRenameOpen(true);
 		}
@@ -292,15 +308,23 @@ export default function FolderManager({ folders = [], selectedId, onRefresh, onD
 			{/* Rename Modal */}
 			{isRenameOpen && (
 				<Modal
-					title={__('Rename Folder', 'mediamanager')}
+					title={__('Edit Folder', 'mediamanager')}
 					onRequestClose={() => setIsRenameOpen(false)}
 					className="mm-folder-modal"
 				>
 					<TextControl
-						label={__('New Name', 'mediamanager')}
+						label={__('Folder Name', 'mediamanager')}
 						value={renameFolderName}
 						onChange={setRenameFolderName}
-						placeholder={__('Enter new name', 'mediamanager')}
+						placeholder={__('Enter folder name', 'mediamanager')}
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+					/>
+					<SelectControl
+						label={__('Parent Folder', 'mediamanager')}
+						value={String(renameFolderParent)}
+						options={getRenameParentOptions()}
+						onChange={(value) => setRenameFolderParent(parseInt(value, 10))}
 						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 					/>
@@ -318,7 +342,7 @@ export default function FolderManager({ folders = [], selectedId, onRefresh, onD
 							onClick={handleRename}
 							disabled={isProcessing}
 						>
-							{isProcessing ? __('Renaming…', 'mediamanager') : __('Rename', 'mediamanager')}
+							{isProcessing ? __('Saving…', 'mediamanager') : __('Save', 'mediamanager')}
 						</Button>
 					</div>
 				</Modal>
