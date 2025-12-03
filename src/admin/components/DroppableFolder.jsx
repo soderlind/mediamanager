@@ -55,26 +55,17 @@ export function DroppableFolder({ folderId, children, className = '' }) {
 					window.vmfMoveToFolder(data.mediaId, folderId);
 					
 					// After moving, select the target folder (if setting is enabled)
+					// Note: vmfMoveToFolder handles refreshing the view via refreshMediaLibrary()
+					// so we only need to handle the jumpToFolderAfterMove case here
 					const { jumpToFolderAfterMove = false } = window.vmfData || {};
 					if (jumpToFolderAfterMove && window.vmfSelectFolder) {
 						// Small delay to let the move complete
 						setTimeout(() => {
 							window.vmfSelectFolder(folderId);
 						}, 200);
-					} else {
-						// When not jumping to folder, remove the moved item from the current view
-						// BUT only if we're not in "All Media" view (All Media shows all items regardless of folder)
-						const isAllMediaView = !document.querySelector('.attachments-browser')?.classList.contains('vmf-folder-filtered');
-						if (!isAllMediaView) {
-							const attachment = document.querySelector(`.attachment[data-id="${data.mediaId}"]`);
-							if (attachment) {
-								// Small delay to let the move complete before removing
-								setTimeout(() => {
-									attachment.remove();
-								}, 300);
-							}
-						}
 					}
+					// When not jumping to folder, refreshMediaLibrary() handles removing/keeping items
+					// based on whether we're in "All Media" view or a specific folder
 				}
 			}
 		} catch (error) {

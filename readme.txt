@@ -3,7 +3,7 @@ Contributors: PerS
 Tags: media, folders, organization, media library, virtual folders
 Requires at least: 6.8
 Tested up to: 6.9
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 Requires PHP: 8.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,10 @@ Only the folder organization is removed. Your media files are not deleted.
 Virtual Media Folders works entirely within the WordPress admin. It doesn't affect your front-end theme.
 
 == Changelog ==
+
+= 1.0.4 =
+* Fixed: Removed duplicate item removal logic in DroppableFolder to prevent event conflicts
+* Fixed: Single file drag-drop now correctly delegates view refresh to refreshMediaLibrary()
 
 = 1.0.3 =
 * Fixed: Moving files from "All Media" view no longer removes them from view (both bulk and single file moves)
