@@ -1,5 +1,5 @@
 /**
- * Shared hooks and components for Media Manager.
+ * Shared hooks and components for Virtual Media Folders.
  */
 
 export { default as useFolderData, buildTree } from './hooks/useFolderData';

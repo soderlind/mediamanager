@@ -1,7 +1,7 @@
 {
 	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
 	"meta": {
-		"title": "Media Manager",
+		"title": "Virtual Media Folders",
 		"author": "bph",
 		"description": "Virtual folder organization and smart management for the WordPress Media Library.",
 		"categories": [

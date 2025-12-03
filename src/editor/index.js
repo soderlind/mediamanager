@@ -1,5 +1,5 @@
 /**
- * Gutenberg Editor Integration for Media Manager.
+ * Gutenberg Editor Integration for Virtual Media Folders.
  *
  * Entry point for block editor integration, including:
  * - Media library folder filtering via sidebar
