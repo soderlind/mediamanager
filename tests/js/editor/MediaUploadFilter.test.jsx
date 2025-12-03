@@ -1,7 +1,7 @@
 /**
  * MediaUploadFilter component tests.
  *
- * @package MediaManager
+ * @package VirtualMediaFolders
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -55,7 +55,7 @@ describe('MediaUploadFilter', () => {
 
 			expect(addFilter).toHaveBeenCalledWith(
 				'editor.MediaUpload',
-				'mediamanager/folder-filter',
+				'vmf/folder-filter',
 				expect.any(Function)
 			);
 		});
@@ -65,7 +65,7 @@ describe('MediaUploadFilter', () => {
 
 			expect(addFilter).toHaveBeenCalledWith(
 				'editor.MediaUpload',
-				expect.stringContaining('mediamanager'),
+				expect.stringContaining('vmf'),
 				expect.any(Function)
 			);
 		});

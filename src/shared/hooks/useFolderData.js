@@ -92,7 +92,7 @@ export default function useFolderData({ trackUrl = false, onFolderSelect, mediaT
 			let filteredCounts = null;
 			if (typeFilter) {
 				filteredCounts = await apiFetch({
-					path: `/mediamanager/v1/folders/counts?media_type=${encodeURIComponent(typeFilter)}`,
+					path: `/vmf/v1/folders/counts?media_type=${encodeURIComponent(typeFilter)}`,
 				});
 			}
 

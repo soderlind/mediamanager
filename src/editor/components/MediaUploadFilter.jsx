@@ -59,7 +59,7 @@ const withFolderFilter = createHigherOrderComponent((MediaUpload) => {
 export function registerMediaUploadFilter() {
 	addFilter(
 		'editor.MediaUpload',
-		'mediamanager/folder-filter',
+		'vmf/folder-filter',
 		withFolderFilter
 	);
 }

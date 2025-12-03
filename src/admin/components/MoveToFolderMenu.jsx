@@ -47,10 +47,10 @@ export function MoveToFolderMenu({ mediaId, currentFolderId, onMove }) {
 			fetchFolders();
 		};
 
-		window.addEventListener('mediamanager:folders-updated', handleFolderRefresh);
+		window.addEventListener('vmf:folders-updated', handleFolderRefresh);
 
 		return () => {
-			window.removeEventListener('mediamanager:folders-updated', handleFolderRefresh);
+			window.removeEventListener('vmf:folders-updated', handleFolderRefresh);
 		};
 	}, [fetchFolders]);
 
