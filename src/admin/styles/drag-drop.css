@@ -110,7 +110,7 @@
 	.vmf-drag-overlay {
 		border-width: 3px;
 	}
-	
+
 	.vmf-droppable-folder.is-over::after {
 		border-width: 3px;
 	}
@@ -118,6 +118,7 @@
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+
 	.vmf-draggable-media,
 	.vmf-droppable-folder {
 		transition: none;
