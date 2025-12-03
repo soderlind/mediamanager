@@ -9,7 +9,7 @@
 			"Media"
 		]
 	},
-	"landingPage": "/wp-admin/upload.php",
+	"landingPage": "/wp-admin/upload.php?mode=folder",
 	"steps": [
 		{
 			"step": "importWxr",
