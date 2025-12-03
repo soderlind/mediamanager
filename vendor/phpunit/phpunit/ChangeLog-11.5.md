@@ -2,6 +2,17 @@
 
 All notable changes of the PHPUnit 11.5 release series are documented in this file using the [Keep a CHANGELOG](https://keepachangelog.com/) principles.
 
+## [11.5.45] - 2025-12-01
+
+### Changed
+
+* Updated list of deprecated PHP configuration settings for PHP 8.6
+
+### Fixed
+
+* [#6408](https://github.com/sebastianbergmann/phpunit/issues/6408): Exception in a data provider method leads to internal PHPUnit error
+* [#6426](https://github.com/sebastianbergmann/phpunit/pull/6426): Fix migration of configuration without schema location
+
 ## [11.5.44] - 2025-11-13
 
 ### Fixed
@@ -13,6 +24,7 @@ All notable changes of the PHPUnit 11.5 release series are documented in this fi
 ### Changed
 
 * Skipped tests alone no longer lead to a yellow background for the test result summary
+* Updated list of deprecated PHP configuration settings for PHP 8.4 and PHP 8.5
 
 ### Fixed
 
@@ -374,6 +386,7 @@ All notable changes of the PHPUnit 11.5 release series are documented in this fi
 * [#6055](https://github.com/sebastianbergmann/phpunit/issues/6055): `assertNotContainsOnly()` (use `assertContainsNotOnlyArray()`, `assertContainsNotOnlyBool()`, `assertContainsNotOnlyCallable()`, `assertContainsNotOnlyFloat()`, `assertContainsNotOnlyInt()`, `assertContainsNotOnlyIterable()`, `assertContainsNotOnlyNumeric()`, `assertContainsNotOnlyObject()`, `assertContainsNotOnlyResource()`, `assertContainsNotOnlyClosedResource()`, `assertContainsNotOnlyScalar()`, or `assertContainsNotOnlyString()` instead)
 * [#6059](https://github.com/sebastianbergmann/phpunit/issues/6059): `containsOnly()` (use `containsOnlyArray()`, `containsOnlyBool()`, `containsOnlyCallable()`, `containsOnlyFloat()`, `containsOnlyInt()`, `containsOnlyIterable()`, `containsOnlyNumeric()`, `containsOnlyObject()`, `containsOnlyResource()`, `containsOnlyClosedResource()`, `containsOnlyScalar()`, or `containsOnlyString()` instead)
 
+[11.5.45]: https://github.com/sebastianbergmann/phpunit/compare/11.5.44...11.5.45
 [11.5.44]: https://github.com/sebastianbergmann/phpunit/compare/11.5.43...11.5.44
 [11.5.43]: https://github.com/sebastianbergmann/phpunit/compare/11.5.42...11.5.43
 [11.5.42]: https://github.com/sebastianbergmann/phpunit/compare/11.5.41...11.5.42

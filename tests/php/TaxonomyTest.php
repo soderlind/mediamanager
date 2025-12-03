@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaManagerTests;
+namespace VirtualMediaFolders\Tests;
 
 use Brain\Monkey;
 use VirtualMediaFolders\Taxonomy;

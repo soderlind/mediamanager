@@ -95,57 +95,57 @@ final class Settings {
 		// @todo Uncomment when smart suggestions are ready.
 		/*
 		add_settings_section(
-			'mediamanager_suggestions',
-			__( 'Smart Suggestions', 'mediamanager' ),
+			'vmf_suggestions',
+			__( 'Smart Suggestions', 'virtual-media-folders' ),
 			[ self::class, 'render_suggestions_section' ],
 			self::PAGE_SLUG
 		);
 
 		add_settings_field(
 			'enable_suggestions',
-			__( 'Enable Suggestions', 'mediamanager' ),
+			__( 'Enable Suggestions', 'virtual-media-folders' ),
 			[ self::class, 'render_checkbox_field' ],
 			self::PAGE_SLUG,
-			'mediamanager_suggestions',
+			'vmf_suggestions',
 			[
 				'id'          => 'enable_suggestions',
-				'description' => __( 'Show folder suggestions when uploading new media.', 'mediamanager' ),
+				'description' => __( 'Show folder suggestions when uploading new media.', 'virtual-media-folders' ),
 			]
 		);
 
 		add_settings_field(
 			'suggestions_mime_types',
-			__( 'MIME Type Matching', 'mediamanager' ),
+			__( 'MIME Type Matching', 'virtual-media-folders' ),
 			[ self::class, 'render_checkbox_field' ],
 			self::PAGE_SLUG,
-			'mediamanager_suggestions',
+			'vmf_suggestions',
 			[
 				'id'          => 'suggestions_mime_types',
-				'description' => __( 'Suggest folders based on file type (images, videos, documents).', 'mediamanager' ),
+				'description' => __( 'Suggest folders based on file type (images, videos, documents).', 'virtual-media-folders' ),
 			]
 		);
 
 		add_settings_field(
 			'suggestions_exif_date',
-			__( 'EXIF Date Matching', 'mediamanager' ),
+			__( 'EXIF Date Matching', 'virtual-media-folders' ),
 			[ self::class, 'render_checkbox_field' ],
 			self::PAGE_SLUG,
-			'mediamanager_suggestions',
+			'vmf_suggestions',
 			[
 				'id'          => 'suggestions_exif_date',
-				'description' => __( 'Suggest folders based on photo creation date from EXIF data.', 'mediamanager' ),
+				'description' => __( 'Suggest folders based on photo creation date from EXIF data.', 'virtual-media-folders' ),
 			]
 		);
 
 		add_settings_field(
 			'suggestions_iptc',
-			__( 'IPTC Keywords Matching', 'mediamanager' ),
+			__( 'IPTC Keywords Matching', 'virtual-media-folders' ),
 			[ self::class, 'render_checkbox_field' ],
 			self::PAGE_SLUG,
-			'mediamanager_suggestions',
+			'vmf_suggestions',
 			[
 				'id'          => 'suggestions_iptc',
-				'description' => __( 'Suggest folders based on embedded IPTC keywords.', 'mediamanager' ),
+				'description' => __( 'Suggest folders based on embedded IPTC keywords.', 'virtual-media-folders' ),
 			]
 		);
 		*/

@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
-        'name' => 'soderlind/mediamanager',
+        'name' => 'soderlind/virtual-media-folders',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'f7239ee3d20f74fecd6fbb24dac615909d1ee59f',
+        'reference' => '686849de0c26e3173126785e0ff94fdaefc3eee8',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -146,9 +146,9 @@
             'dev_requirement' => true,
         ),
         'phpunit/phpunit' => array(
-            'pretty_version' => '11.5.44',
-            'version' => '11.5.44.0',
-            'reference' => 'c346885c95423eda3f65d85a194aaa24873cda82',
+            'pretty_version' => '11.5.45',
+            'version' => '11.5.45.0',
+            'reference' => 'faf5fff4fb9beb290affa53f812b05380819c51a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/phpunit',
             'aliases' => array(),
@@ -289,10 +289,10 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
-        'soderlind/mediamanager' => array(
+        'soderlind/virtual-media-folders' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'f7239ee3d20f74fecd6fbb24dac615909d1ee59f',
+            'reference' => '686849de0c26e3173126785e0ff94fdaefc3eee8',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

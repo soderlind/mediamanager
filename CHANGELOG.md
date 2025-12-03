@@ -5,6 +5,20 @@ All notable changes to Virtual Media Folders will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-12-03
+
+### Fixed
+- Updated REST API paths from `mediamanager/v1` to `vmf/v1` in JavaScript source files
+- Updated custom event names from `mediamanager:folders-updated` to `vmf:folders-updated`
+- Updated WordPress filter name from `mediamanager/folder-filter` to `vmf/folder-filter`
+- Updated all text domains in Settings.php commented code from `mediamanager` to `virtual-media-folders`
+- Renamed `MediaManagerDndProvider` component to `VmfDndProvider`
+- Updated test namespaces from `MediaManagerTests` to `VirtualMediaFolders\Tests`
+- Updated test file paths from `mediamanager-test` to `vmf-test`
+- Regenerated translation files with correct references
+- Regenerated `package-lock.json` with correct package name
+- Regenerated `composer.lock` and vendor autoload files
+
 ## [1.0.0] - 2025-12-03
 
 ### Changed
@@ -223,6 +237,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Leverages WordPress REST API for all operations
 
 
+[1.0.1]: https://github.com/soderlind/virtual-media-folders/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/soderlind/virtual-media-folders/compare/0.1.17...1.0.0
 [0.1.17]: https://github.com/soderlind/virtual-media-folders/compare/0.1.16...0.1.17
 [0.1.16]: https://github.com/soderlind/virtual-media-folders/compare/0.1.15...0.1.16

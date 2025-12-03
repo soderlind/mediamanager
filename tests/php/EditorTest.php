@@ -27,10 +27,10 @@ class EditorTest extends TestCase {
 
 		// Define constants if not already defined
 		if ( ! defined( 'VMF_PATH' ) ) {
-			define( 'VMF_PATH', '/tmp/mediamanager-test/' );
+			define( 'VMF_PATH', '/tmp/vmf-test/' );
 		}
 		if ( ! defined( 'VMF_URL' ) ) {
-			define( 'VMF_URL', 'https://example.com/wp-content/plugins/mediamanager/' );
+			define( 'VMF_URL', 'https://example.com/wp-content/plugins/virtual-media-folders/' );
 		}
 		if ( ! defined( 'VMF_VERSION' ) ) {
 			define( 'VMF_VERSION', '0.1.0' );

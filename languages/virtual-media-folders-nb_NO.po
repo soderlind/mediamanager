@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Media Manager 0.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mediamanager\n"
+"Project-Id-Version: Virtual Media Folders 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/virtual-media-folders\n"
 "Last-Translator: Per Søderlind <per@soderlind.no>\n"
 "Language-Team: Norwegian Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -11,16 +11,16 @@ msgstr ""
 "PO-Revision-Date: 2025-11-29T14:00:00+00:00\n"
 "Language: nb_NO\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: mediamanager\n"
+"X-Domain: virtual-media-folders\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Plugin Name of the plugin
-#: mediamanager.php
-msgid "Media Manager"
-msgstr "Mediebehandler"
+#: virtual-media-folders.php
+msgid "Virtual Media Folders"
+msgstr "Virtuelle mediemapper"
 
 #. Description of the plugin
-#: mediamanager.php
+#: virtual-media-folders.php
 msgid "Virtual folder organization and smart management for the WordPress Media Library."
 msgstr "Virtuell mappeorganisering og smart administrasjon for WordPress mediebibliotek."
 
@@ -175,8 +175,8 @@ msgid "Filter by parent folder ID."
 msgstr "Filtrer etter overordnet mappe-ID."
 
 #: src/Settings.php:70
-msgid "Media Manager Settings"
-msgstr "Mediebehandler-innstillinger"
+msgid "Virtual Media Folders Settings"
+msgstr "Innstillinger for virtuelle mediemapper"
 
 #: src/Settings.php:71
 msgid "Folder Settings"
@@ -223,16 +223,16 @@ msgid "Save Settings"
 msgstr "Lagre innstillinger"
 
 #: src/Settings.php:323
-msgid "Configure how Media Manager suggests folders for newly uploaded files."
-msgstr "Konfigurer hvordan Mediebehandler foreslår mapper for nylig opplastede filer."
+msgid "Configure how Virtual Media Folders suggests folders for newly uploaded files."
+msgstr "Konfigurer hvordan Virtuelle mediemapper foreslår mapper for nylig opplastede filer."
 
 #: src/Settings.php:332
 msgid "Set default behavior for folder organization."
 msgstr "Angi standardoppførsel for mappeorganisering."
 
 #: src/Settings.php:341
-msgid "Customize the Media Manager user interface."
-msgstr "Tilpass Mediebehandler-brukergrensesnittet."
+msgid "Customize the Virtual Media Folders user interface."
+msgstr "Tilpass brukergrensesnittet for Virtuelle mediemapper."
 
 #: src/Settings.php:384
 msgid "None"
@@ -288,13 +288,13 @@ msgstr "Nytt mappenavn"
 msgid "Media Folders"
 msgstr "Mediemapper"
 
-#: mediamanager.php:39
-msgid "Media Manager requires PHP 8.3 or higher."
-msgstr "Mediebehandler krever PHP 8.3 eller høyere."
+#: virtual-media-folders.php:39
+msgid "Virtual Media Folders requires PHP 8.3 or higher."
+msgstr "Virtuelle mediemapper krever PHP 8.3 eller høyere."
 
-#: mediamanager.php:50
-msgid "Media Manager requires WordPress 6.8 or higher."
-msgstr "Mediebehandler krever WordPress 6.8 eller høyere."
+#: virtual-media-folders.php:50
+msgid "Virtual Media Folders requires WordPress 6.8 or higher."
+msgstr "Virtuelle mediemapper krever WordPress 6.8 eller høyere."
 
 #: src/admin/components/BulkFolderAction.jsx:135
 #: src/admin/components/BulkFolderAction.jsx:216
@@ -493,12 +493,12 @@ msgid "Folder"
 msgstr "Mappe"
 
 #. Author of the plugin
-#: mediamanager.php
+#: virtual-media-folders.php
 msgid "Per Soderlind"
 msgstr "Per Søderlind"
 
 #. Author URI of the plugin
-#: mediamanager.php
+#: virtual-media-folders.php
 msgid "https://soderlind.no/"
 msgstr "https://soderlind.no/"
 

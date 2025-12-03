@@ -20,13 +20,13 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
- * Media Manager DnD Provider.
+ * VMF DnD Provider.
  *
  * @param {Object}   props
  * @param {Function} props.onMoveToFolder Callback when media is dropped on a folder.
  * @param {React.ReactNode} props.children
  */
-export function MediaManagerDndProvider({ onMoveToFolder, children }) {
+export function VmfDndProvider({ onMoveToFolder, children }) {
 	const [activeId, setActiveId] = useState(null);
 	const [activeData, setActiveData] = useState(null);
 
@@ -98,4 +98,4 @@ export function MediaManagerDndProvider({ onMoveToFolder, children }) {
 	);
 }
 
-export default MediaManagerDndProvider;
+export default VmfDndProvider;

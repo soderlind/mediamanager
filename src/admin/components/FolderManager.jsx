@@ -102,7 +102,7 @@ export default function FolderManager({ folders = [], selectedId, onRefresh, onD
 
 		try {
 			await apiFetch({
-				path: '/mediamanager/v1/folders',
+				path: '/vmf/v1/folders',
 				method: 'POST',
 				data: {
 					name: newFolderName.trim(),
@@ -140,7 +140,7 @@ export default function FolderManager({ folders = [], selectedId, onRefresh, onD
 
 		try {
 			await apiFetch({
-				path: `/mediamanager/v1/folders/${selectedId}`,
+				path: `/vmf/v1/folders/${selectedId}`,
 				method: 'PUT',
 				data: {
 					name: renameFolderName.trim(),
@@ -173,7 +173,7 @@ export default function FolderManager({ folders = [], selectedId, onRefresh, onD
 
 		try {
 			await apiFetch({
-				path: `/mediamanager/v1/folders/${selectedId}`,
+				path: `/vmf/v1/folders/${selectedId}`,
 				method: 'DELETE',
 			});
 

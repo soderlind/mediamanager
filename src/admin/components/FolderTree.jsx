@@ -120,7 +120,7 @@ export default function FolderTree({ onFolderSelect }) {
 	const handleRefresh = useCallback(() => {
 		fetchFolders();
 		// Dispatch custom event so other components can refresh their folder lists
-		window.dispatchEvent(new CustomEvent('mediamanager:folders-updated'));
+		window.dispatchEvent(new CustomEvent('vmf:folders-updated'));
 	}, [fetchFolders]);
 
 	useEffect(() => {

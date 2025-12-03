@@ -3,7 +3,7 @@ Contributors: PerS
 Tags: media, folders, organization, media library, virtual folders
 Requires at least: 6.8
 Tested up to: 6.9
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 8.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,16 @@ Only the folder organization is removed. Your media files are not deleted.
 Virtual Media Folders works entirely within the WordPress admin. It doesn't affect your front-end theme.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixed: Updated REST API paths from mediamanager/v1 to vmf/v1
+* Fixed: Updated custom event names from mediamanager: to vmf: prefix
+* Fixed: Updated WordPress filter name from mediamanager/folder-filter to vmf/folder-filter
+* Fixed: Updated all text domains in Settings.php commented code
+* Fixed: Renamed MediaManagerDndProvider to VmfDndProvider
+* Fixed: Updated test namespaces from MediaManagerTests to VirtualMediaFolders\Tests
+* Fixed: Regenerated translation files with correct references
+* Fixed: Regenerated composer autoload files
 
 = 1.0.0 =
 * **Major Release**: Complete plugin rename from "Media Manager" to "Virtual Media Folders"
@@ -166,6 +176,9 @@ Virtual Media Folders works entirely within the WordPress admin. It doesn't affe
 * Norwegian Bokmål translation
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Bugfix release: Fixed remaining mediamanager references in REST API paths, events, and filters.
 
 = 1.0.0 =
 Major release: Plugin renamed from "Media Manager" to "Virtual Media Folders". Breaking change for customizations.
