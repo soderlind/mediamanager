@@ -22,6 +22,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  */
 
 // Delete all terms in the media_folder taxonomy.
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variable is prefixed with vmf_
 $vmf_terms = get_terms(
 	array(
 		'taxonomy'   => 'media_folder',
@@ -31,6 +32,7 @@ $vmf_terms = get_terms(
 );
 
 if ( ! is_wp_error( $vmf_terms ) && ! empty( $vmf_terms ) ) {
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variable is prefixed with vmf_
 	foreach ( $vmf_terms as $vmf_term_id ) {
 		wp_delete_term( $vmf_term_id, 'media_folder' );
 	}

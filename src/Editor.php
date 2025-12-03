@@ -182,6 +182,7 @@ final class Editor {
 				 * @param bool $include_children Whether to include child folders. Default false.
 				 * @param int  $folder_id        The folder term ID being filtered.
 				 */
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Hook is prefixed with vmf_
 				$include_children = apply_filters( 'vmf_include_child_folders', false, $folder_id );
 
 				$query_args[ 'tax_query' ][] = [
