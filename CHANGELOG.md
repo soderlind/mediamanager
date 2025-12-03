@@ -5,6 +5,13 @@ All notable changes to Virtual Media Folders will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-12-03
+
+### Fixed
+- Updated all "Media Manager" references in source file comments to "Virtual Media Folders"
+- Updated console.error message in `media-library.js` to use correct plugin name
+- Files updated: `Admin.php`, `editor/index.js`, `admin/index.js`, `shared/index.js`, `editor/styles/editor.css`, `admin/styles/drag-drop.css`, `admin/media-library.js`
+
 ## [1.0.1] - 2025-12-03
 
 ### Fixed

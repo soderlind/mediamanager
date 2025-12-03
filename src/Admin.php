@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Admin handler for Media Manager.
+ * Admin handler for Virtual Media Folders.
  *
  * Responsible for:
  * - Enqueueing admin scripts and styles on media library pages

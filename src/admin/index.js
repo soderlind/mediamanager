@@ -1,5 +1,5 @@
 /**
- * Media Manager Admin Entry Point
+ * Virtual Media Folders Admin Entry Point
  *
  * Loads and initializes the folder tree view in the Media Library.
  */

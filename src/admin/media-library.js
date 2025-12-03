@@ -133,7 +133,7 @@ async function moveMediaToFolder(mediaId, folderId) {
 	const { ajaxUrl, nonce } = window.vmfData || {};
 
 	if (!ajaxUrl || !nonce) {
-		console.error('Media Manager: Missing AJAX configuration');
+		console.error('Virtual Media Folders: Missing AJAX configuration');
 		return;
 	}
 
