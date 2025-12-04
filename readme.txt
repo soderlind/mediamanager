@@ -3,7 +3,7 @@ Contributors: PerS
 Tags: media, folders, organization, media library, virtual folders
 Requires at least: 6.8
 Tested up to: 6.9
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 Requires PHP: 8.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,10 @@ Only the folder organization is removed. Your media files are not deleted.
 Virtual Media Folders works entirely within the WordPress admin. It doesn't affect your front-end theme.
 
 == Changelog ==
+
+= 1.0.7 =
+* Added: Contextual help tab "Virtual Folders" on Media Library page
+* Added: GitHub repository link in contextual help sidebar
 
 = 1.0.6 =
 * Added: Filter hooks for settings (`vmf_default_settings`, `vmf_settings`, `vmf_setting_{$key}`)

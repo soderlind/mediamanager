@@ -16,6 +16,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: virtual-media-folders.php
+#: src/Admin.php:73
 msgid "Virtual Media Folders"
 msgstr "Virtuelle mediemapper"
 
@@ -24,27 +25,27 @@ msgstr "Virtuelle mediemapper"
 msgid "Virtual folder organization and smart management for the WordPress Media Library."
 msgstr "Virtuell mappeorganisering og smart administrasjon for WordPress mediebibliotek."
 
-#: src/Admin.php:76
+#: src/Admin.php:133
 msgid "Invalid security token."
 msgstr "Ugyldig sikkerhetstoken."
 
-#: src/Admin.php:81
+#: src/Admin.php:138
 msgid "Permission denied."
 msgstr "Ingen tilgang."
 
-#: src/Admin.php:89
+#: src/Admin.php:146
 msgid "Invalid media ID."
 msgstr "Ugyldig medie-ID."
 
-#: src/Admin.php:95
+#: src/Admin.php:152
 msgid "Attachment not found."
 msgstr "Vedlegg ikke funnet."
 
-#: src/Admin.php:102
+#: src/Admin.php:159
 msgid "Media removed from all folders."
 msgstr "Media fjernet fra alle mapper."
 
-#: src/Admin.php:112
+#: src/Admin.php:169
 #: src/RestApi.php:392
 #: src/RestApi.php:444
 #: src/RestApi.php:501
@@ -54,7 +55,7 @@ msgid "Folder not found."
 msgstr "Mappe ikke funnet."
 
 #. translators: %s: folder name
-#: src/Admin.php:125
+#: src/Admin.php:182
 #, php-format
 msgid "Media moved to \"%s\"."
 msgstr "Media flyttet til «%s»."
@@ -182,59 +183,43 @@ msgstr "Innstillinger for virtuelle mediemapper"
 msgid "Folder Settings"
 msgstr "Mappeinnstillinger"
 
-#: src/Settings.php:156
+#: src/Settings.php:176
 msgid "Default Behavior"
 msgstr "Standardoppførsel"
 
-#: src/Settings.php:163
+#: src/Settings.php:183
 msgid "Default Folder"
 msgstr "Standardmappe"
 
-#: src/Settings.php:169
+#: src/Settings.php:189
 msgid "Automatically assign new uploads to this folder (0 = none)."
 msgstr "Tildel automatisk nye opplastinger til denne mappen (0 = ingen)."
 
-#: src/Settings.php:187
+#: src/Settings.php:207
 msgid "Show Uncategorized"
 msgstr "Vis ukategorisert"
 
-#: src/Settings.php:193
+#: src/Settings.php:213
 msgid "Show the \"Uncategorized\" virtual folder in the sidebar."
 msgstr "Vis den virtuelle mappen «Ukategorisert» i sidepanelet."
 
-#: src/Settings.php:200
-msgid "User Interface"
-msgstr "Brukergrensesnitt"
-
-#: src/Settings.php:207
-msgid "Sidebar Default Visible"
-msgstr "Sidepanel synlig som standard"
-
-#: src/Settings.php:213
-msgid "Show the folder sidebar by default when opening Media Library."
-msgstr "Vis mappepanelet som standard når mediebiblioteket åpnes."
-
-#: src/Settings.php:297
+#: src/Settings.php:362
 msgid "Settings saved."
 msgstr "Innstillinger lagret."
 
-#: src/Settings.php:310
+#: src/Settings.php:375
 msgid "Save Settings"
 msgstr "Lagre innstillinger"
 
-#: src/Settings.php:323
+#: src/Settings.php:388
 msgid "Configure how Virtual Media Folders suggests folders for newly uploaded files."
 msgstr "Konfigurer hvordan Virtuelle mediemapper foreslår mapper for nylig opplastede filer."
 
-#: src/Settings.php:332
+#: src/Settings.php:397
 msgid "Set default behavior for folder organization."
 msgstr "Angi standardoppførsel for mappeorganisering."
 
-#: src/Settings.php:341
-msgid "Customize the Virtual Media Folders user interface."
-msgstr "Tilpass brukergrensesnittet for Virtuelle mediemapper."
-
-#: src/Settings.php:384
+#: src/Settings.php:465
 msgid "None"
 msgstr "Ingen"
 
@@ -297,7 +282,7 @@ msgid "Virtual Media Folders requires WordPress 6.8 or higher."
 msgstr "Virtuelle mediemapper krever WordPress 6.8 eller høyere."
 
 #: src/admin/components/BulkFolderAction.jsx:135
-#: src/admin/components/BulkFolderAction.jsx:216
+#: src/admin/components/BulkFolderAction.jsx:220
 #: src/editor/components/FolderFilter.jsx:68
 #: src/shared/components/BaseFolderTree.jsx:82
 msgid "Uncategorized"
@@ -309,27 +294,27 @@ msgstr "Ukategorisert"
 msgid "%1$d items moved to \"%2$s\"."
 msgstr "%1$d elementer flyttet til «%2$s»."
 
-#: src/admin/components/BulkFolderAction.jsx:184
+#: src/admin/components/BulkFolderAction.jsx:188
 msgid "Failed to move some items."
 msgstr "Kunne ikke flytte noen elementer."
 
-#: src/admin/components/BulkFolderAction.jsx:215
+#: src/admin/components/BulkFolderAction.jsx:219
 msgid "Move to folder…"
 msgstr "Flytt til mappe…"
 
-#: src/admin/components/BulkFolderAction.jsx:228
-#: src/admin/components/BulkFolderAction.jsx:229
+#: src/admin/components/BulkFolderAction.jsx:232
+#: src/admin/components/BulkFolderAction.jsx:233
 msgid "Moving…"
 msgstr "Flytter…"
 
-#: src/admin/components/BulkFolderAction.jsx:228
-#: src/admin/components/BulkFolderAction.jsx:229
+#: src/admin/components/BulkFolderAction.jsx:232
+#: src/admin/components/BulkFolderAction.jsx:233
 #: src/admin/components/SuggestionNotice.jsx:39
 msgid "Apply"
 msgstr "Bruk"
 
 #. translators: %d: number of selected items
-#: src/admin/components/BulkFolderAction.jsx:242
+#: src/admin/components/BulkFolderAction.jsx:246
 #, js-format
 msgid "%d selected"
 msgstr "%d valgt"
@@ -338,7 +323,7 @@ msgstr "%d valgt"
 msgid "Media"
 msgstr "Media"
 
-#: src/admin/components/DroppableFolder.jsx:92
+#: src/admin/components/DroppableFolder.jsx:87
 msgid "Drop here to move media to this folder"
 msgstr "Slipp her for å flytte media til denne mappen"
 
@@ -420,15 +405,15 @@ msgstr "Sletter…"
 msgid "Delete"
 msgstr "Slett"
 
-#: src/shared/components/BaseFolderItem.jsx:130
+#: src/shared/components/BaseFolderItem.jsx:146
 msgid "Collapse"
 msgstr "Skjul"
 
-#: src/shared/components/BaseFolderItem.jsx:130
+#: src/shared/components/BaseFolderItem.jsx:146
 msgid "Expand"
 msgstr "Utvid"
 
-#: src/shared/components/BaseFolderItem.jsx:139
+#: src/shared/components/BaseFolderItem.jsx:155
 #: src/shared/components/BaseFolderTree.jsx:85
 msgid "items"
 msgstr "elementer"
@@ -475,15 +460,15 @@ msgstr "Foreslåtte mapper: %s"
 msgid "Dismiss"
 msgstr "Avvis"
 
-#: src/admin/media-library.js:89
-#: src/admin/media-library.js:90
-#: src/admin/media-library.js:414
-#: src/admin/media-library.js:415
+#: src/admin/media-library.js:84
+#: src/admin/media-library.js:85
+#: src/admin/media-library.js:419
+#: src/admin/media-library.js:420
 msgid "Show Folders"
 msgstr "Vis mapper"
 
-#: src/admin/media-library.js:166
-#: src/admin/media-library.js:170
+#: src/admin/media-library.js:161
+#: src/admin/media-library.js:165
 msgid "Failed to move media."
 msgstr "Kunne ikke flytte media."
 
@@ -514,11 +499,11 @@ msgstr "Hopp til mappe etter flytting"
 msgid "Automatically switch to the target folder after moving files."
 msgstr "Bytt automatisk til målmappen etter at filer er flyttet."
 
-#: src/Settings.php:175
+#: src/Settings.php:195
 msgid "Show All Media"
 msgstr "Vis alle medier"
 
-#: src/Settings.php:181
+#: src/Settings.php:201
 msgid "Show the \"All Media\" option in the sidebar."
 msgstr "Vis «Alle medier»-alternativet i sidepanelet."
 
@@ -537,3 +522,59 @@ msgstr "Lagrer…"
 #: src/admin/components/FolderManager.jsx:345
 msgid "Save"
 msgstr "Lagre"
+
+#: src/Admin.php:74
+msgid "Organize your media files into virtual folders without moving files on disk."
+msgstr "Organiser mediefilene dine i virtuelle mapper uten å flytte filer på disken."
+
+#: src/Admin.php:76
+msgid "Getting Started"
+msgstr "Kom i gang"
+
+#: src/Admin.php:78
+msgid "Click the folder icon next to the view switcher to show the folder sidebar."
+msgstr "Klikk på mappeikonet ved siden av visningsbytteren for å vise mappesidefeltet."
+
+#: src/Admin.php:79
+msgid "Use the + button in the sidebar to create new folders."
+msgstr "Bruk +-knappen i sidefeltet for å opprette nye mapper."
+
+#: src/Admin.php:80
+msgid "Click a folder to filter the media library by that folder."
+msgstr "Klikk på en mappe for å filtrere mediebiblioteket etter den mappen."
+
+#: src/Admin.php:83
+msgid "Moving Media"
+msgstr "Flytte media"
+
+#: src/Admin.php:85
+msgid "Drag and drop media items onto folders in the sidebar."
+msgstr "Dra og slipp medieelementer til mapper i sidefeltet."
+
+#: src/Admin.php:86
+msgid "Select multiple items and use Bulk Actions to move them together."
+msgstr "Velg flere elementer og bruk massehandlinger for å flytte dem sammen."
+
+#: src/Admin.php:87
+msgid "Drop media on \"Uncategorized\" to remove folder assignments."
+msgstr "Slipp media på «Ukategorisert» for å fjerne mappetilordninger."
+
+#: src/Admin.php:90
+msgid "Keyboard Navigation"
+msgstr "Tastaturnavigasjon"
+
+#: src/Admin.php:92
+msgid "Use arrow keys to navigate between folders."
+msgstr "Bruk piltastene for å navigere mellom mapper."
+
+#: src/Admin.php:93
+msgid "Press Enter or Space to select a folder."
+msgstr "Trykk Enter eller mellomrom for å velge en mappe."
+
+#: src/Admin.php:57
+msgid "Virtual Folders"
+msgstr "Virtuelle mapper"
+
+#: src/Admin.php:63
+msgid "Virtual Media Folders on GitHub"
+msgstr "Virtual Media Folders på GitHub"

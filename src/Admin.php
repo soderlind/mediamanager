@@ -37,6 +37,63 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', [ static::class, 'enqueue_scripts' ] );
 		add_action( 'wp_ajax_vmf_move_to_folder', [ static::class, 'ajax_move_to_folder' ] );
 		add_action( 'add_attachment', [ static::class, 'assign_default_folder' ] );
+		add_action( 'admin_head-upload.php', [ static::class, 'add_help_tab' ] );
+	}
+
+	/**
+	 * Add contextual help tab to the Media Library page.
+	 *
+	 * @return void
+	 */
+	public static function add_help_tab(): void {
+		$screen = get_current_screen();
+
+		if ( ! $screen ) {
+			return;
+		}
+
+		$screen->add_help_tab( [
+			'id'      => 'vmf-folders-help',
+			'title'   => __( 'Virtual Folders', 'virtual-media-folders' ),
+			'content' => self::get_help_content(),
+		] );
+
+		// Append to existing help sidebar.
+		$sidebar  = $screen->get_help_sidebar();
+		$sidebar .= '<p><a href="https://github.com/soderlind/virtual-media-folders" target="_blank">' . esc_html__( 'Virtual Media Folders on GitHub', 'virtual-media-folders' ) . '</a></p>';
+		$screen->set_help_sidebar( $sidebar );
+	}
+
+	/**
+	 * Get the help tab content.
+	 *
+	 * @return string HTML content for the help tab.
+	 */
+	private static function get_help_content(): string {
+		$content  = '<h3>' . esc_html__( 'Virtual Media Folders', 'virtual-media-folders' ) . '</h3>';
+		$content .= '<p>' . esc_html__( 'Organize your media files into virtual folders without moving files on disk.', 'virtual-media-folders' ) . '</p>';
+
+		$content .= '<h4>' . esc_html__( 'Getting Started', 'virtual-media-folders' ) . '</h4>';
+		$content .= '<ul>';
+		$content .= '<li>' . esc_html__( 'Click the folder icon next to the view switcher to show the folder sidebar.', 'virtual-media-folders' ) . '</li>';
+		$content .= '<li>' . esc_html__( 'Use the + button in the sidebar to create new folders.', 'virtual-media-folders' ) . '</li>';
+		$content .= '<li>' . esc_html__( 'Click a folder to filter the media library by that folder.', 'virtual-media-folders' ) . '</li>';
+		$content .= '</ul>';
+
+		$content .= '<h4>' . esc_html__( 'Moving Media', 'virtual-media-folders' ) . '</h4>';
+		$content .= '<ul>';
+		$content .= '<li>' . esc_html__( 'Drag and drop media items onto folders in the sidebar.', 'virtual-media-folders' ) . '</li>';
+		$content .= '<li>' . esc_html__( 'Select multiple items and use Bulk Actions to move them together.', 'virtual-media-folders' ) . '</li>';
+		$content .= '<li>' . esc_html__( 'Drop media on "Uncategorized" to remove folder assignments.', 'virtual-media-folders' ) . '</li>';
+		$content .= '</ul>';
+
+		$content .= '<h4>' . esc_html__( 'Keyboard Navigation', 'virtual-media-folders' ) . '</h4>';
+		$content .= '<ul>';
+		$content .= '<li>' . esc_html__( 'Use arrow keys to navigate between folders.', 'virtual-media-folders' ) . '</li>';
+		$content .= '<li>' . esc_html__( 'Press Enter or Space to select a folder.', 'virtual-media-folders' ) . '</li>';
+		$content .= '</ul>';
+
+		return $content;
 	}
 
 	/**
