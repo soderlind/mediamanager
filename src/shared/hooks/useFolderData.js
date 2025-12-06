@@ -168,22 +168,32 @@ export default function useFolderData({ trackUrl = false, onFolderSelect, mediaT
 
 	useEffect(() => {
 		// Get initial folder from URL (admin only)
+		let initialFolder = defaultFolder;
+		
 		if (trackUrl) {
 			const params = new URLSearchParams(window.location.search);
 			const urlFolder = params.get('vmf_folder');
 			const urlMode = params.get('mode');
 			
 			if (urlFolder) {
-				setSelectedId(urlFolder === 'uncategorized' ? 'uncategorized' : parseInt(urlFolder, 10));
+				initialFolder = urlFolder === 'uncategorized' ? 'uncategorized' : parseInt(urlFolder, 10);
+				setSelectedId(initialFolder);
 			} else if (urlMode === 'folder') {
 				// mode=folder without specific folder means use default folder setting
 				setSelectedId(defaultFolder);
+				initialFolder = defaultFolder;
 			}
 			// If no URL params, selectedId keeps its initial value (defaultFolder)
 		}
 
 		fetchFolders();
-	}, [fetchFolders, trackUrl, defaultFolder]);
+		
+		// Apply the initial folder filter if it's not "All Media" (null)
+		// This ensures the media library is filtered on page load
+		if (initialFolder !== null) {
+			onFolderSelect?.(initialFolder);
+		}
+	}, [fetchFolders, trackUrl, defaultFolder, onFolderSelect]);
 
 	// Re-fetch when media type changes
 	useEffect(() => {
