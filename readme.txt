@@ -3,7 +3,7 @@ Contributors: PerS
 Tags: media, folders, organization, media library, virtual folders
 Requires at least: 6.8
 Tested up to: 6.9
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 Requires PHP: 8.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -73,6 +73,10 @@ Only the folder organization is removed. Your media files are not deleted.
 Virtual Media Folders works entirely within the WordPress admin. It doesn't affect your front-end theme.
 
 == Changelog ==
+
+= 1.1.2 =
+* Fixed: Default folder filter not applying on initial page load when "Show All Media" is disabled
+* Fixed: Media Library now correctly shows only uncategorized files on load when Uncategorized is the default
 
 = 1.1.1 =
 * Fixed: 500 error on plugin information page when GitHub API returns null
